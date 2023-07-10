@@ -1,25 +1,50 @@
 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .app{
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 0;
   padding: 0;
-  background-color: #333;
+  background-color: #111;
   font-family:'Raleway', sans-serif;
-  font-size: 0.8em;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 1px;
-  color: #fff;
+  padding: 40px 0;
 }
 
 .class{
   position: relative;
   max-width: 500px;
-  background-color: #444;
-  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.8);
+}
+.search {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
   padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
+}
+.class h1{
+  margin-bottom: 20px;
   color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.search form{
+  position: relative;
+  margin-bottom: 30px;
 }
 .search form label{
   position: relative;
@@ -32,22 +57,85 @@
   flex: 1;
   background-color: inherit;
   outline: none;
-  border: 1px solid #aaa;
+  border: .5px solid rgba(255, 255, 255, 0.2);
   padding: 10px;
   border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  letter-spacing: .8px;
+}
+.def .meaning{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.def .meaning .speaker{
+  margin: 0;
+  padding: 9px;
+  width: 40px;
+  height: 40px;
+  border: .5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+.def .meaning p{
   color: #fff;
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+}
+.def .meaning p span{
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+}
+.definition .pad{
+  padding: 15px 0 0 15px;
+}
+.definition .pad p{
+  line-height: 22px;
+  font-weight: 400;
+}
+.definition .pad .usage{
+  color: rgba(255, 255, 255, 0.6);
+}
+.definition .butn{
+  margin: 10px 0;
+}
+.definition .butn span{
+  margin-right: 10px;
+  color: rgba(138, 238, 138, 0.9);
 }
 .definition .butn button{
   background-color: inherit;
-  border: 1px solid #555;
-  color: #fff;
+  border: .5px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
-  margin-right: 5px;
-  padding: 8px;
+  margin: 5px;
+  padding: 8px 12px;
   border-radius: 16px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  font-family:'Raleway', sans-serif;
+}
+.definition .butn .arrow{
+  width: 36px;
+  height: 34px;
+  padding: 11px 11px;
+  border-radius: 50%;
+}
+.definition .pad ul{
+  margin-left: 15px;
+  line-height: 22px;
+}
+.main {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
 }
 .main .top{
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 .main .top .score{
@@ -75,6 +163,7 @@
   border-radius: 8px;
   color: #00d;
   font-family: sans-serif;
+  font-family:'Raleway', sans-serif;
 }
 .main .level{
   position: relative;
@@ -94,4 +183,7 @@
   height: 5px;
   background-color: #0d0;
   border-radius: 50%;
+}
+.main input{
+  width: 100%;
 }

@@ -1,52 +1,61 @@
 
-import React, { useEffect, useRef, useState } from 'react'
-import speaker from '../assets/speaker.svg'
-import arrow from '../assets/down-arrow.svg'
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import Speaker from './Speaker'
+import Definition from './Definition';
 
-const WordDefinition = ({def1, def1usage, def2, def2usage, id,syn,word,ord,pronon,posp}) => {
+const WordDefinition = ({data}) => {
+  // const [antonyms, setAntonyms] = useState([])
+  // const [synonyms, setSynonyms] = useState([])
 
-    const [isMore, setIsMore] = useState(true)
-    let [more, setMore] = useState(10)
-    var myRef = useRef(0)
+  // const data = axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/dear`)
+  // .then(res => setSynonyms(res.data))
+
+  if (data.title) {
+      console.log(data.title)
+    } else {
+      console.log(data[0].word)
+    }
   
-    useEffect(() => {
-      // axios.get(`${baseUrl1}`).then(response => setCount(response.data));
-      let getHeight = myRef.current.clientHeight    
-  
-      if (getHeight > 64 && isMore) {
-        setMore(more - 1)
-      }  
-    },[more])
+  // const setSyn = async() => {
+  //   const url = "https://api.api-ninjas.com/v1/thesaurus?word=dear"
+  //   const config = {
+  //     headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+  //   };
+  //   axios.get(url, config)
+  //   .then(res=> setAntonyms(res.data))
+  //   .catch(err=> console.log(err.message))
+  // }
 
+  // useEffect(() => {
+  //   setSyn()
+  // }, [])
+
+  
     return (
-    <div key={id} className="def">
+      <>
+        {data.title?(
+          <div className="nothing">
+            <h2>{data.title}</h2>
+            <p>{data.message}</p>
+            <p>{data.resolution}</p>
+          </div>
+        ):(
+          <div className="def">
             <div className="meaning">
-              <div className="speaker">
-              <img src={speaker} alt="speaker" />
-              </div>
-              <p>{word} <br /><span>/{pronon}/</span></p>
+              <Speaker />
+              <p>{data[0].word} 
+              <br /><span>{data[0].phonetics.length == 0? data[0].phonetic: data[0].phonetics[0].text}</span>
+              </p>
             </div>
             <div className="definition">
-              <div>
-                <span><i>{posp} </i></span>
-                <div className="pad">
-                    <p>{def1} </p>
-                    <p className='usage'>"{def1usage}"</p>
-                    <div className="butn" ref={myRef}>
-                        <span>Similar:</span> {syn.slice(0,more).map((idx, x) => <button key={x} >{idx}</button> )}
-                        <button 
-                        className='arrow'
-                        onClick={() => {setMore(syn.length); setIsMore(!isMore)}}><img src={arrow} alt="down-arrow" /></button>
-                    </div>
-                    <ul>
-                        <li>{def2} <br />
-                            <span className='usage'>"{def2usage}"</span> 
-                        </li>
-                    </ul>
-                </div>
-              </div> 
+              {data[0].meanings.map((mean, x) =>
+              <Definition {...mean} key={x} />)}
             </div>
           </div>
+        )}
+      </>
+   
   )
 }
 

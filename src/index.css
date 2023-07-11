@@ -8,9 +8,9 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   flex-direction: column;
   margin: 0;
   padding: 0;
@@ -26,6 +26,7 @@
   position: relative;
   max-width: 500px;
   color: rgba(255, 255, 255, 0.8);
+  margin: 0 auto;
 }
 .search {
   position: relative;
@@ -64,6 +65,28 @@
   font-size: 1rem;
   letter-spacing: .8px;
 }
+.search .enter{
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+.search .enter p{
+  font-size: 2rem;
+}
+.nothing{
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+}
+.nothing h2{
+  margin-bottom: 10px;
+  text-align: center;
+}
+.nothing p{
+  line-height: 22px;
+}
 .def .meaning{
   display: flex;
   gap: 20px;
@@ -96,6 +119,7 @@
 }
 .definition .pad .usage{
   color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
 }
 .definition .butn{
   margin: 10px 0;

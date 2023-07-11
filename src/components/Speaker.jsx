@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import speaker from '../assets/speaker.svg'
 
-const Speaker = () => {
-  return (
+const Speaker = ({audio}) => {
+
+console.log(audio)
+    return (
     <div className="speaker">
         <img src={speaker} alt="speaker" />
+        <audio src={audio} controls></audio>
     </div>
   )
 }

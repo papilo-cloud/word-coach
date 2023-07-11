@@ -9,17 +9,20 @@ import Game from './components/Game';
 function App() {
   
   const [text, setText] = useState()
+  const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
 
-  const dataApi = async()=>{
+  const fetchWord = async()=>{
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`);
-    const dataJ = await data.json();
-    setWords(dataJ);
+    const word = await data.json();
+    setWords(word);
+    const audUlr = word[0].phonetics[0].audio
+    setAudio(audUlr)
   }
 
 
   useEffect(() => {
-      dataApi();
+      fetchWord();
     }, []);
 
   function handleChange(e) {
@@ -31,8 +34,8 @@ function App() {
       if (text.trim().length == 0) {
           alert('Enter a word')
       } else {
-          setText('')
-          dataApi();
+          setText('');
+          fetchWord();
     }
   }
  
@@ -44,7 +47,6 @@ function App() {
 
   return (
     <div className='app'>
-      {/* <h1>{count}</h1> */}
       <div className="class">
         <div className="search">
           <h1>Dictionary</h1>
@@ -57,7 +59,7 @@ function App() {
                placeholder='Search for word' />
             </label>
         </form>
-        {text === ''? <WordDefinition data={words} />:text === undefined?<div className="enter"><p>Enter a word</p></div>: ''}
+        {text === ''? <WordDefinition audio={audio} data={words} />:text === undefined?<div className="enter"><p>Enter a word</p></div>: ''}
         </div>
         <Game data={words} />
       </div>

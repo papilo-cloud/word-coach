@@ -9,8 +9,6 @@ const Similar = ({antonyms}) => {
     let [more, setMore] = useState(10)
     var myRef = useRef(0)
 
-    console.log(antonyms[0].antonyms)
-
     const syn = [{word: 'brother', synonyms:['one','two','three', 'four', 'five','six','seven'], antonyms: 
 ['one','two','three', 'four', 'five','six','seven']}
 ]

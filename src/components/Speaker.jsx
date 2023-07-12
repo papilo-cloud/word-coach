@@ -3,12 +3,17 @@ import speaker from '../assets/speaker.svg'
 
 const Speaker = ({audio}) => {
   const [tooltip, setTooltip] = useState(false)
+  const [animate, setAnimate] = useState(false)
 
   const myRef = useRef(null)
   function handleClick() {
 
     if (audio) {
       myRef.current.play();
+      setAnimate(true)
+      setTimeout(() => {
+        setAnimate(false)
+      }, 2000);
     } else {
       setTooltip(true)
       setTimeout(() => {
@@ -19,7 +24,7 @@ const Speaker = ({audio}) => {
 
 
     return (
-    <div className="speaker">
+    <div className={animate ? 'speaker animate': 'speaker'}>
       <div className="tooltip" style={{
         display:tooltip? 'block': 'none'
       }}>

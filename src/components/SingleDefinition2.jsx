@@ -4,7 +4,6 @@ import Similar from './Similar'
 
 const SingleDefinition2 = ({partOfSpeech, definitions}) => {
 
-    // const count = title
   return (
     <div>
         <div>

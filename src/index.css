@@ -197,20 +197,41 @@
 .main {
   position: relative;
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #222;
   border-radius: 10px;
 }
 .main .top{
+  position: relative;
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+.main .top:nth-child(1){
+  padding-left: 20px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 .main .top .score{
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: space-between;
+}
+.main .top .more{
+  position: relative;
+  background-color: rgba(43, 88, 242,0.8);
+  padding: 8px 5px 8px 20px;
+  border-radius: 5px 0 0 5px;
+}
+.main .top .more p{
+  font-size: 0.7rem;
+  padding: 0;
+  color: #111;
+  font-weight: 600;
 }
 .top .score span{
   display: inline-block;
@@ -221,6 +242,10 @@
 }
  .main .words{
   text-align: center;
+  padding: 20px;
+}
+.main .words p{
+  margin-bottom: 10px;
 }
 .words .box button{
   width: 100%;
@@ -229,9 +254,11 @@
   border: 1.5px solid #fff;
   padding: 10px;
   border-radius: 8px;
-  color: #00d;
+  color: rgba(43, 88, 242,0.8);
+  font-weight: 500;
   font-family: sans-serif;
   font-family:'Raleway', sans-serif;
+  font-size: 0.9rem;
 }
 .main .level{
   position: relative;
@@ -239,6 +266,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding:0px  20px 10px;
 }
 .level .span{
   width: 50px;

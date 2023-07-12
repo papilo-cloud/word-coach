@@ -88,18 +88,54 @@
   line-height: 22px;
 }
 .def .meaning{
+  position: relative;
   display: flex;
   gap: 20px;
   align-items: center;
   margin-bottom: 10px;
 }
 .def .meaning .speaker{
+  position: relative;
   margin: 0;
   padding: 9px;
   width: 40px;
   height: 40px;
-  border: .5px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+}
+.def .speaker .tooltip{
+  position: absolute;
+  padding: 10px;
+  width: 100px;
+  background-color: #111;
+  border-radius: 10px;
+  left: 0;
+  top: -36px;
+  transition: .3s;
+}
+.def .speaker .tooltip span{
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #111;
+  bottom: -5px;
+  left: 15px;
+  transform: rotate(45deg);
+}
+.def .speaker .tooltip p{
+  font-size: 0.6rem;
+}
+.def .speaker button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.def .meaning .speaker audio{
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .def .meaning p{
   color: #fff;
@@ -113,6 +149,7 @@
 }
 .definition .pad{
   padding: 15px 0 0 15px;
+  margin-bottom: 10px;
 }
 .definition .pad p{
   line-height: 22px;
@@ -120,7 +157,6 @@
 }
 .definition .pad .usage{
   color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 10px;
 }
 .definition .butn{
   margin: 10px 0;
@@ -149,7 +185,14 @@
 }
 .definition .pad ul{
   margin-left: 15px;
+}
+.definition .pad ul li{
   line-height: 22px;
+  margin-bottom: 10px;
+}
+.definition .pad ul:nth-child(1){
+  list-style: none;
+  margin-left: 0;
 }
 .main {
   position: relative;

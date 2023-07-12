@@ -13,16 +13,22 @@ function App() {
   const [words, setWords] = useState([])
 
   const fetchWord = async()=>{
+    let mounted = true;
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`);
     const word = await data.json();
     setWords(word);
+
     const audUlr = word[0].phonetics[0].audio
     setAudio(audUlr)
   }
 
-
   useEffect(() => {
+    let mounted = false;
+    if (!mounted) {
       fetchWord();
+    }
+    return () => mounted = true;
+
     }, []);
 
   function handleChange(e) {

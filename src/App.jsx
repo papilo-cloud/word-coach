@@ -11,6 +11,7 @@ function App() {
   const [text, setText] = useState()
   const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
+  const [game, setGame] = useState(false)
 
   const fetchWord = async()=>{
     let mounted = true;
@@ -42,12 +43,13 @@ function App() {
       } else {
           setText('');
           fetchWord();
+          setGame(true)
     }
   }
  
   
     
-    console.log(words)
+    // console.log(words)
 
 
 
@@ -67,7 +69,7 @@ function App() {
         </form>
         {text === ''? <WordDefinition audio={audio} data={words} />:text === undefined?<div className="enter"><p>Enter a word</p></div>: ''}
         </div>
-        <Game data={words} />
+        {game && <Game data={words} />}
       </div>
     </div>
   )

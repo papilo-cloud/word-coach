@@ -97,21 +97,36 @@
 .def .meaning .speaker{
   position: relative;
   margin: 0;
-  padding: 9px;
+  padding: 8px;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
 }
+.def .meaning .animate{
+  animation: animate 3s ease-in-out;
+}
+
+@keyframes animate{
+  from{
+    border: 2px solid rgba(0, 170, 255, 0.2);
+  }
+  to{
+    border: 2px solid rgba(0, 170, 255, 0.9);
+  }
+}
+
 .def .speaker .tooltip{
   position: absolute;
   padding: 10px;
-  width: 100px;
+  width: 110px;
   background-color: #111;
   border-radius: 10px;
   left: 0;
   top: -36px;
   transition: .3s;
+  transition-delay: .3s;
 }
 .def .speaker .tooltip span{
   display: block;
@@ -124,7 +139,7 @@
   transform: rotate(45deg);
 }
 .def .speaker .tooltip p{
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 .def .speaker button{
   background-color: transparent;
@@ -167,7 +182,7 @@
 }
 .definition .butn button{
   background-color: inherit;
-  border: .5px solid rgba(255, 255, 255, 0.2);
+  border: .5px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
   margin: 5px;
@@ -194,10 +209,32 @@
   list-style: none;
   margin-left: 0;
 }
+
+.definition .show-more{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+.definition .show-more button{
+  width: 100%;
+  padding: 15px;
+  border-radius: 100px;
+  border: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  background-color: inherit;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: .7px;
+  font-weight:400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .main {
   position: relative;
   width: 100%;
-  /* padding: 20px; */
   background-color: #222;
   border-radius: 10px;
 }
@@ -209,7 +246,7 @@
   align-items: center;
   padding-top: 10px;
 }
-.main .top:nth-child(1){
+.main .top p{
   padding-left: 20px;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -232,6 +269,7 @@
   padding: 0;
   color: #111;
   font-weight: 600;
+  text-transform: none;
 }
 .top .score span{
   display: inline-block;
@@ -254,7 +292,7 @@
   border: 1.5px solid #fff;
   padding: 10px;
   border-radius: 8px;
-  color: rgba(43, 88, 242,0.8);
+  color: #7fd0f8;
   font-weight: 500;
   font-family: sans-serif;
   font-family:'Raleway', sans-serif;

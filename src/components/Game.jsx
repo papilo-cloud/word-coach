@@ -3,7 +3,7 @@ import React from 'react'
 import image from '../assets/download.svg'
 
 const Game = ({data}) => {
-    // console.log(data)
+
   return (
     <div className="main">
         <div className="top">

@@ -1,23 +1,22 @@
-import React from 'react'
-import Similar from './Similar'
+import React, { useState } from 'react'
 import Disimilar from './Dissimilar'
+import SingleDefinition from './SingleDefinition'
+import MoreDefinitions from './MoreDefinitions'
 
-const Definition = ({partOfSpeech, definitions}) => {
-    const short = (definitions.slice(0,1).map((def, i) => <div key={i}> <p>{def.definition}</p>
-    <p className='usage'>"{def.example}"</p> </div> ))
-    const long = (
-         definitions.slice(1).map((def, i) => <ul key={i} ><li>
-            {def.definition}<br /><span className='usage'>"{def.example}"</span> </li></ul>)
-    )
-    const total = short + long
-    console.log(total)
+const Definition = ({data}) => {
+  const [showMore, setShowMore] = useState(false)
+
   return (
-    <div>
-        <span><i>{partOfSpeech}</i></span>
-        <div className="pad">
-            {definitions.length > 1? long : short}
-        </div>
-    </div> 
+    <>
+    {data[0].meanings.map((mean, x) => <SingleDefinition {...mean} key={x} /> )} 
+    
+    {showMore && data.slice(1).map((data, x) => <div><p>Definition: {x+2}</p><MoreDefinitions {...data} /></div> )} 
+    {
+      data.length> 1 && <div>
+        <button onClick={() => setShowMore(!showMore)}>Show More</button>
+      </div>
+    }
+    </>
   )
 }
 

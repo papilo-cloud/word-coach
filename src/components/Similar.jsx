@@ -4,11 +4,12 @@ import arrow from '../assets/down-arrow.svg'
 
 
 
-const Similar = (props) => {
+const Similar = ({antonyms}) => {
     const [isMore, setIsMore] = useState(true)
-    // const [antonyms ,setAntonyms] = useState([])
     let [more, setMore] = useState(10)
     var myRef = useRef(0)
+
+    console.log(antonyms[0].antonyms)
 
     const syn = [{word: 'brother', synonyms:['one','two','three', 'four', 'five','six','seven'], antonyms: 
 ['one','two','three', 'four', 'five','six','seven']}

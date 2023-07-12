@@ -6,21 +6,33 @@ function Apps() {
    const [index, setIndex] = useState(0)
    const myRef = useRef(null)
 
-   function addScroll() {
-    if (index < images.length - 1) {
-        setIndex(index + 1)
-    } else {
-        setIndex(0)
+   useEffect(() =>{
+    function handleScroll(e) {
+        console.log(window.scrollX, window.scrollY)
     }
-    myRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-    })
-   }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll)
+   }, [])
+
+//    function addScroll() {
+//     if (index < images.length - 1) {
+//         setIndex(index + 1)
+//     } else {
+//         setIndex(0)
+//     }
+//     myRef.current.scrollIntoView({
+//         behavior: 'smooth',
+//         block: 'nearest',
+//         inline: 'center'
+//     })
+//    }
   return (
-    <div>
-        <button
+    <div style={{
+        width: 300,
+        height: 1000,
+        backgroundColor: 'red',
+    }}>
+        {/* <button
         style={{position: 'fixed' }}
          onClick={addScroll}>Next</button>
        <ul style={{
@@ -38,7 +50,7 @@ function Apps() {
          key={imgs.id}>
             <img src={imgs.imageUrl}></img>
         </li> )}
-       </ul>
+       </ul> */}
     </div>
   )
 }

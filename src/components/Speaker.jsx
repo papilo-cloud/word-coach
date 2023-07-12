@@ -1,13 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import speaker from '../assets/speaker.svg'
 
 const Speaker = ({audio}) => {
+  const [tooltip, setTooltip] = useState(false)
 
-console.log(audio)
+  const myRef = useRef(null)
+  function handleClick() {
+
+    if (audio) {
+      myRef.current.play();
+    } else {
+      setTooltip(true)
+      setTimeout(() => {
+        setTooltip(false)
+      }, 2000);
+    }
+  }
+
+
     return (
     <div className="speaker">
-        <img src={speaker} alt="speaker" />
-        <audio src={audio} controls></audio>
+      <div className="tooltip" style={{
+        display:tooltip? 'block': 'none'
+      }}>
+        <span></span>
+        <p>Not available</p>
+      </div>
+        <button onClick={handleClick}>
+          <img src={speaker} alt="speaker" />
+        </button>
+        <audio ref={myRef}  src={audio}></audio>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Speaker from './Speaker'
 import Definition from './Definition';
+import MoreDefinitions from './MoreDefinitions';
 
 const WordDefinition = ({data, audio}) => {
   // const [antonyms, setAntonyms] = useState([])
@@ -43,8 +44,7 @@ const WordDefinition = ({data, audio}) => {
               </p>
             </div>
             <div className="definition">
-              {data[0].meanings.map((mean, x) =>
-              <Definition {...mean} key={x} />)}
+              <Definition data={data} />
             </div>
           </div>
         )}

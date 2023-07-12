@@ -8,13 +8,12 @@ import Game from './components/Game';
 
 function App() {
   
-  const [text, setText] = useState()
+  const [text, setText] = useState('')
   const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
   const [game, setGame] = useState(false)
 
   const fetchWord = async()=>{
-    let mounted = true;
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`);
     const word = await data.json();
     setWords(word);
@@ -30,7 +29,7 @@ function App() {
     }
     return () => mounted = true;
 
-    }, []);
+    }, [text]);
 
   function handleChange(e) {
       setText(e.target.value)
@@ -67,7 +66,7 @@ function App() {
                placeholder='Search for word' />
             </label>
         </form>
-        {text === ''? <WordDefinition audio={audio} data={words} />:text === undefined?<div className="enter"><p>Enter a word</p></div>: ''}
+        {game && text.length == 0? <WordDefinition audio={audio} data={words} />:<div className="enter"><p>Enter a word</p></div>}
         </div>
         {game && <Game data={words} />}
       </div>

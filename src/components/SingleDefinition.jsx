@@ -2,7 +2,7 @@ import React from 'react'
 import Similar from './Similar'
 
 
-const SingleDefinition = ({partOfSpeech, definitions}) => {
+const SingleDefinition = ({partOfSpeech, definitions, synonyms, antonyms}) => {
   return (
     <div>
         <div className='single'>
@@ -10,7 +10,7 @@ const SingleDefinition = ({partOfSpeech, definitions}) => {
             <div className="pad">
                 { definitions.map((def, i) => <ul key={i} ><li>
                 {def.definition}<br />{def.example &&<span className='usage'>"{def.example}"</span>} </li></ul>)}
-                <Similar antonyms={definitions} />
+                <Similar antonyms={antonyms} synonyms={synonyms} />
             </div>
         </div>
     </div>

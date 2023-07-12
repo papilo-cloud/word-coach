@@ -6,7 +6,7 @@ const MoreDefinitions = ({meanings}) => {
 
   return (
     <div>
-        {meanings.map((mean, x) =><div> <SingleDefinition2 {...mean} key={x} /></div> )}
+        {meanings.map((mean, x) =><div> <SingleDefinition2 key={x} {...mean}  /></div> )}
     </div>
   )
 }

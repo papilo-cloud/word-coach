@@ -1,5 +1,6 @@
 
 import React from 'react'
+import image from '../assets/download.svg'
 
 const Game = ({data}) => {
     // console.log(data)
@@ -7,10 +8,8 @@ const Game = ({data}) => {
     <div className="main">
         <div className="top">
             <p>word coach</p>
-            <div className="score">
-              <p>score</p>
-              <span></span>
-              <p>360</p>
+            <div className="more">
+              <p>Learn new words</p>
             </div>
         </div>
         <div className="words">
@@ -22,7 +21,7 @@ const Game = ({data}) => {
             </div>
         </div>
         <div className="level">
-            <div><img src="../image.png" alt="i" /></div>
+            <div><img src={image} alt="i" /></div>
             <div className="span">
               <span></span>
               <span></span>

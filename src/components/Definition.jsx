@@ -10,7 +10,10 @@ const Definition = ({data}) => {
     <>
     {data[0].meanings.map((mean, x) => <SingleDefinition {...mean} key={x} /> )} 
     
-    {showMore && data.slice(1).map((data, x) => <div><p>Definition: {x+2}</p><MoreDefinitions {...data} /></div> )} 
+    {showMore && data.slice(1).map((data, x) => <div>
+        <p>Definition: {x+2}</p><MoreDefinitions {...data} />
+      </div> 
+      )} 
     {
       data.length> 1 && <div>
         <button onClick={() => setShowMore(!showMore)}>Show More</button>

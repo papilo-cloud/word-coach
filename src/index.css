@@ -58,7 +58,7 @@
   flex: 1;
   background-color: inherit;
   outline: none;
-  border: .5px solid rgba(255, 255, 255, 0.2);
+  border: .7px solid rgba(255, 255, 255, 0.2);
   padding: 10px;
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.8);
@@ -162,9 +162,25 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.8rem;
 }
+.definition .single span{
+  margin-bottom: 0;
+}
 .definition .pad{
-  padding: 15px 0 0 15px;
+  padding: 5px 0 0 15px;
+  margin-bottom: 15px;
+}
+.definition .num{
   margin-bottom: 10px;
+  position: relative;
+}
+.definition .num::after{
+  position: absolute;
+  content: '';
+  width: 75%;
+  height: 1.5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  top: 50%;
+  right: 10px;
 }
 .definition .pad p{
   line-height: 22px;
@@ -180,6 +196,9 @@
   margin-right: 10px;
   color: rgba(138, 238, 138, 0.9);
 }
+.definition .butn .diss{
+  color: rgb(226, 90, 49);
+}
 .definition .butn button{
   background-color: inherit;
   border: .5px solid rgba(255, 255, 255, 0.1);
@@ -191,6 +210,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   font-family:'Raleway', sans-serif;
+  cursor: pointer;
 }
 .definition .butn .arrow{
   width: 36px;

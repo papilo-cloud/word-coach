@@ -28,7 +28,7 @@ const Speaker = ({audio}) => {
       <div className="tooltip" style={{
         display:tooltip? 'block': 'none'
       }}>
-        <span></span>
+        <span className='span'></span>
         <p>Not available</p>
       </div>
         <button onClick={handleClick}>

@@ -128,7 +128,7 @@
   transition: .3s;
   transition-delay: .3s;
 }
-.def .speaker .tooltip span{
+.def .speaker .tooltip .span{
   display: block;
   position: absolute;
   width: 10px;
@@ -181,6 +181,58 @@
   background-color: rgba(255, 255, 255, 0.2);
   top: 50%;
   right: 10px;
+}
+.definition .modal{
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 10px 15px 25px #000, -5px -5px 25px #000;
+  border-radius: 6px;
+  top: 50%;
+  background-color: #222;
+}
+.modal .inner{
+  position: relative;
+  padding: 20px 15px;
+  width: 100%;
+
+}
+.modal .inner::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  left: 0;
+  bottom: 0;
+}
+.definition .modal .inner .tops{
+  position: relative;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+.modal .inner .tops span{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modal .inner .tops .p{
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+}
+.modal .btn{
+  position: relative;
+  width: 100%;
+  background-color: inherit;
+  border: none;
+  padding: 15px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #7faff8;
 }
 .definition .pad p{
   line-height: 22px;

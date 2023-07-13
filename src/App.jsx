@@ -48,7 +48,7 @@ function App() {
  
   
     
-    // console.log(words)
+    console.log(words)
 
 
 

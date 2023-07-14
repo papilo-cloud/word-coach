@@ -413,6 +413,17 @@
   font-family: sans-serif;
   font-family:'Raleway', sans-serif;
   font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+}
+.words .box .correct{
+  background-color: #0d0;
+}
+.words .box .wrong{
+  /* background-color: #f81f02; */
 }
 .main .level{
   position: relative;

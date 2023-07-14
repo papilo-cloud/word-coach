@@ -12,14 +12,21 @@ function App() {
   const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
   const [game, setGame] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const fetchWord = async()=>{
-    const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`);
-    const word = await data.json();
-    setWords(word);
-
-    const audUlr = word[0].phonetics[0].audio
-    setAudio(audUlr)
+    const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
+    .then(resp => {if (!resp.ok) {
+        setIsError(true)
+      }
+      setIsError(false)
+      return resp.json()
+    } 
+    )
+    .then(datas => {setWords(datas);
+      setAudio(datas[0].phonetics[0].audio)
+    })
+    .catch(err => console.log(err))
   }
 
   useEffect(() => {
@@ -41,19 +48,20 @@ function App() {
           alert('Enter a word')
       } else {
           setText('');
-          fetchWord();
+          fetchWord()
           setGame(true)
     }
   }
  
   
     
-    console.log(words)
+    // console.log(words)
 
 
 
   return (
     <div className='app'>
+      {isError? <p>Error:</p>:
       <div className="class">
         <div className="search">
           <h1>Dictionary</h1>
@@ -69,7 +77,7 @@ function App() {
         {game && text.length == 0? <WordDefinition audio={audio} data={words} />:<div className="enter"><p>Enter a word</p></div>}
         </div>
         {game && <Game data={words} />}
-      </div>
+      </div>}
     </div>
   )
 }

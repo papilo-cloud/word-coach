@@ -8,21 +8,42 @@ const Similar = ({antonyms, synonyms}) => {
     const [isMore, setIsMore] = useState(true)
     const [br, setBr] = useState(false)
     const [dissimilar, setDissimilar] = useState(false)
-    const [moreSearch, setMoreSearch] = useState()
+    const [moreSearch, setMoreSearch] = useState(false)
     const [addMore, setAddMore] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const [words, setWords] = useState([])
     const [audios, setAudios] = useState([])
 
     let [more, setMore] = useState(10)
     var myRef = useRef(0)
+    var modalRef = useRef()
   
     useEffect(() => {
       let getHeight = myRef.current.clientHeight ;
+      
       if (getHeight > 64 && isMore) {
         setAddMore(true);
         setMore(more - 1);
       }  
     },[more])
+    useEffect(() => {
+      if (showModal) {
+        document.body.style.overflow = 'hidden'
+      } else{
+        document.body.style.overflow = 'unset'
+      }
+      function getTarget(e) {
+        if (!modalRef.current.contains(e.target)) {
+          setShowModal(false)
+        }
+      }
+      document.body.addEventListener('click', getTarget)
+      
+      return () => {document.body.style.overflow = 'unset';
+                    document.body.removeEventListener('click', getTarget)
+    }
+    }, [showModal])
+    
 
     function handleChange() {
       if (isMore) {
@@ -32,21 +53,19 @@ const Similar = ({antonyms, synonyms}) => {
         setDissimilar(true)
       } 
     }
-   
- 
     
     const fetchWord = async (url)=>{
       
       const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${url}`);
       const word = await data.json();
       setWords(word);
-      const audUlr = word[0].phonetics[0].audio
-      setAudios(audUlr)
-      // console.log(word)
+      const audUlr = word[0].phonetics[0].audio;
+      setAudios(audUlr);
+      setShowModal(true)
     }
 
   return (
-    <>
+    <div className='similar'>
         <div className="butn" ref={myRef}>
             <>
               {synonyms.length > 0 && antonyms.length > 0 ? <>
@@ -74,8 +93,10 @@ const Similar = ({antonyms, synonyms}) => {
             </button>
             }
         </div>
-        <ModalDef audio={audios} words={words} />
-    </>
+        <div ref={modalRef}>
+          <ModalDef setShowModal={setShowModal} showModal={showModal} audio={audios} words={words} />
+        </div>
+    </div>
   )
 }
 export default Similar

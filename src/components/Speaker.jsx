@@ -29,7 +29,7 @@ const Speaker = ({audio}) => {
         display:tooltip? 'block': 'none'
       }}>
         <span className='span'></span>
-        <p>Not available</p>
+        <p className='pp'>Not available</p>
       </div>
         <button onClick={handleClick}>
           <img src={speaker} alt="speaker" />

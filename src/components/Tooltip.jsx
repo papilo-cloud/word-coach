@@ -21,7 +21,7 @@ const Tooltip = () => {
     <div className="tooltip" style={{
         display:tooltip? 'block': 'none'}}>
         <span></span>
-        <p>Not available</p>
+        <p className='pp'>Not available</p>
     </div>
   )
 }

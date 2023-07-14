@@ -1,11 +1,14 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import image from '../assets/download.svg'
+import { ModalContext } from './ModalContext'
 
 const Game = ({data}) => {
 
+  const isOpac = useContext(ModalContext)
+
   return (
-    <div className="main">
+    <div className={isOpac ? "main opac": "main"}>
         <div className="top">
             <p>word coach</p>
             <div className="more">

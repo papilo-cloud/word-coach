@@ -1,12 +1,18 @@
 
 import Speaker from './Speaker'
 import image from '../assets/cross.svg'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ModalContext } from './ModalContext'
 
 const ModalDef = ({audio, modalWord, showModal, setShowModal}) => {
-    const {words, setAudio, setWords} = useContext(ModalContext);
-// console.log(words)
+    const {words, setAudio, setWords, setModalClose, modalClose} = useContext(ModalContext);
+    
+    function handleClick() {
+        setShowModal(false)
+        setWords(modalWord);
+        setAudio(modalWord[0].phonetics[0].audio);
+        setModalClose(true)
+    }
     
   return (
     <>
@@ -26,12 +32,10 @@ const ModalDef = ({audio, modalWord, showModal, setShowModal}) => {
                     </div>
                 </div>
                 <button className='btn'
-                onClick={() => {
-                    setShowModal(false)
-                    setWords(modalWord);
-                    setAudio(modalWord[0].phonetics[0].audio);
-                    
-                    }} >full definition</button>
+                
+                onClick={handleClick} >
+                    <a href="#one">full definition</a>
+                </button>
         </div>
     }
     </>

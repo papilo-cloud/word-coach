@@ -18,9 +18,7 @@
   letter-spacing: 1px;
   padding: 40px 0;
 }
-.opac{
-  opacity: .7;
-}
+
 
 .class{
   position: relative;
@@ -35,6 +33,9 @@
   padding: 20px;
   background-color: #222;
   border-radius: 10px;
+}
+.opac{
+  background-color: rgba(17, 17, 17,0.6);
 }
 .class h1{
   margin-bottom: 20px;

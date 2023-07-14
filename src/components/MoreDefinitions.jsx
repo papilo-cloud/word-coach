@@ -2,11 +2,11 @@
 import React from 'react'
 import SingleDefinition2 from './SingleDefinition2'
 
-const MoreDefinitions = ({meanings}) => {
+const MoreDefinitions = ({meanings, keys}) => {
 
   return (
     <div>
-        {meanings.map((mean, x) =><div> <SingleDefinition2 key={x} {...mean}  /></div> )}
+        {meanings.map((mean, x) =><div key={x}> <SingleDefinition2  {...mean}  /></div> )}
     </div>
   )
 }

@@ -27,9 +27,10 @@ const ModalDef = ({audio, modalWord, showModal, setShowModal}) => {
                 </div>
                 <button className='btn'
                 onClick={() => {
+                    setShowModal(false)
                     setWords(modalWord);
                     setAudio(modalWord[0].phonetics[0].audio);
-                    setShowModal(false)
+                    
                     }} >full definition</button>
         </div>
     }

@@ -32,10 +32,10 @@ const Similar = ({antonyms, synonyms}) => {
     useEffect(() => {
       if (showModal) {
         document.body.style.overflow = 'hidden';
-        // setIsOpac(true)
+        setIsOpac(true)
       } else{
         document.body.style.overflow = 'unset';
-        // setIsOpac(false)
+        setIsOpac(false)
       }
       function getTarget(e) {
         if (!modalRef.current.contains(e.target)) {
@@ -45,6 +45,7 @@ const Similar = ({antonyms, synonyms}) => {
       document.body.addEventListener('click', getTarget)
       
       return () => {document.body.style.overflow = 'hidden';
+                    document.body.style.overflow = 'unset';
                     document.body.removeEventListener('click', getTarget)
     }
     }, [showModal])

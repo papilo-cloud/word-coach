@@ -18,6 +18,9 @@
   letter-spacing: 1px;
   padding: 40px 0;
 }
+.opac{
+  opacity: .7;
+}
 
 .class{
   position: relative;
@@ -200,6 +203,7 @@
   top: 50%;
   background-color: #222;
   z-index: 1;
+  opacity: 100;
 }
 @media screen and (min-width: 520px) {
   .similar .modal{

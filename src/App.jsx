@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import WordDefinition from './components/WordDefinition';
 import Game from './components/Game';
+import { ModalContext } from './components/ModalContext';
 
 // const baseUrl1 = "https://dictionaryapi.com/api/v3/references/collegiate/json/alchemy?key=ddc8b6ea-7ce5-4f2a-9ff5-2426249b5255"
 
@@ -12,6 +13,7 @@ function App() {
   const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
   const [game, setGame] = useState(false)
+  var [isOpac, setIsOpac] = useState(false)
   const [isError, setIsError] = useState(false)
 
   const fetchWord = async()=>{
@@ -55,12 +57,22 @@ function App() {
  
   
     
-    // console.log(words)
+    console.log(words)
 
 
 
   return (
-    <div className='app'>
+    <ModalContext.Provider value={
+      {
+        isOpac,
+        setIsOpac,
+        words,
+        setWords,
+        setText,
+        setAudio
+      }
+    }>
+      <div className={isOpac ? 'app opac':'app'} >
       {isError? <p>Error:</p>:
       <div className="class">
         <div className="search">
@@ -79,6 +91,7 @@ function App() {
         {game && <Game data={words} />}
       </div>}
     </div>
+    </ModalContext.Provider>
   )
 }
 

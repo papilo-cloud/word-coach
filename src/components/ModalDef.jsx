@@ -1,29 +1,36 @@
 
 import Speaker from './Speaker'
 import image from '../assets/cross.svg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { ModalContext } from './ModalContext'
 
-const ModalDef = ({audio, words, showModal, setShowModal}) => {
-console.log(words)
+const ModalDef = ({audio, modalWord, showModal, setShowModal}) => {
+    const {words, setAudio, setWords} = useContext(ModalContext);
+// console.log(words)
     
   return (
     <>
-        {words.length > 0 && showModal &&
+        {modalWord.length > 0 && showModal &&
         <div className='modal'>
                 <div className="inner">
                     <div className="tops">
                             <Speaker audio={audio} />
-                            <p className='p'>{words[0].word }</p>
+                            <p className='p'>{modalWord[0].word }</p>
                         <button className='button' onClick={() => setShowModal(false)}>
                             <img src={image} alt="cancel" />
                         </button>
                     </div>
                     <div className="body">
-                        <p>{words[0].meanings[0].definitions[0].definition}</p>
-                        {words[0].meanings[0].definitions[0].example &&<span className='usage'>"{words[0].meanings[0].definitions[0].example}"</span>}
+                        <p>{modalWord[0].meanings[0].definitions[0].definition}</p>
+                        {modalWord[0].meanings[0].definitions[0].example &&<span className='usage'>"{words[0].meanings[0].definitions[0].example}"</span>}
                     </div>
                 </div>
-                <button className='btn'>full definition</button>
+                <button className='btn'
+                onClick={() => {
+                    setWords(modalWord);
+                    setAudio(modalWord[0].phonetics[0].audio);
+                    setShowModal(false)
+                    }} >full definition</button>
         </div>
     }
     </>

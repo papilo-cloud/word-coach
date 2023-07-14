@@ -1,6 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useContext } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import ModalDef from './ModalDef'
+import { ModalContext } from './ModalContext'
 
 
 
@@ -17,6 +18,7 @@ const Similar = ({antonyms, synonyms}) => {
     let [more, setMore] = useState(10)
     var myRef = useRef(0)
     var modalRef = useRef()
+    let {isOpac, setIsOpac} = useContext(ModalContext)
   
     useEffect(() => {
       let getHeight = myRef.current.clientHeight ;
@@ -25,12 +27,15 @@ const Similar = ({antonyms, synonyms}) => {
         setAddMore(true);
         setMore(more - 1);
       }  
-    },[more])
+    },[more]);
+
     useEffect(() => {
       if (showModal) {
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden';
+        // setIsOpac(true)
       } else{
-        document.body.style.overflow = 'unset'
+        document.body.style.overflow = 'unset';
+        // setIsOpac(false)
       }
       function getTarget(e) {
         if (!modalRef.current.contains(e.target)) {
@@ -39,7 +44,7 @@ const Similar = ({antonyms, synonyms}) => {
       }
       document.body.addEventListener('click', getTarget)
       
-      return () => {document.body.style.overflow = 'unset';
+      return () => {document.body.style.overflow = 'hidden';
                     document.body.removeEventListener('click', getTarget)
     }
     }, [showModal])
@@ -94,7 +99,7 @@ const Similar = ({antonyms, synonyms}) => {
             }
         </div>
         <div ref={modalRef}>
-          <ModalDef setShowModal={setShowModal} showModal={showModal} audio={audios} words={words} />
+          <ModalDef setShowModal={setShowModal} showModal={showModal} audio={audios} modalWord={words} />
         </div>
     </div>
   )

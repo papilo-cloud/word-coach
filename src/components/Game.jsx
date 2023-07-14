@@ -13,7 +13,7 @@ const Game = ({data}) => {
             </div>
         </div>
         <div className="words">
-            <p>which word is <i>opposite</i> of youth?</p>
+            <p>which word is <i>opposite</i> of {data[0].word}?</p>
             <div className="box">
               <button>Adulthood</button>
               <p>or</p>

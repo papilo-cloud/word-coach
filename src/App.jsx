@@ -13,8 +13,10 @@ function App() {
   const [audio, setAudio] = useState()
   const [words, setWords] = useState([])
   const [game, setGame] = useState(false)
-  var [isOpac, setIsOpac] = useState(false)
+  const [isOpac, setIsOpac] = useState(false)
   const [isError, setIsError] = useState(false)
+
+  console.log(isOpac)
 
   const fetchWord = async()=>{
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
@@ -57,7 +59,7 @@ function App() {
  
   
     
-    console.log(words)
+    // console.log(words)
 
 
 
@@ -75,7 +77,7 @@ function App() {
       <div className={isOpac ? 'app opac':'app'} >
       {isError? <p>Error:</p>:
       <div className="class">
-        <div className="search">
+        <div className={isOpac ? 'search opac':'search'}>
           <h1>Dictionary</h1>
           <form onSubmit={handleSubmit}>
             <label>

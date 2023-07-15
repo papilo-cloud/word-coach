@@ -27,7 +27,7 @@ const Speaker = ({audio}) => {
     <div className={animate ? 'speaker animate': 'speaker'}>
       <div className="tooltip" style={{
         display:tooltip? 'block': 'none'
-      }}>
+        }}>
         <span className='span'></span>
         <p className='pp'>Not available</p>
       </div>

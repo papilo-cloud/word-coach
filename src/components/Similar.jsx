@@ -13,6 +13,7 @@ const Similar = ({antonyms, synonyms}) => {
     const [showModal, setShowModal] = useState(false)
     const [words, setWords] = useState([])
     const [audios, setAudios] = useState([])
+    const [tooltip, setTooltip] = useState(true)
 
     let [more, setMore] = useState(10)
     var myRef = useRef(0)
@@ -64,9 +65,17 @@ const Similar = ({antonyms, synonyms}) => {
       const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${url}`);
       const word = await data.json();
       setWords(word);
-      const audUlr = word[0].phonetics[0].audio;
+      const audUlr = word[0]?.phonetics[0]?.audio;
       setAudios(audUlr);
-      setShowModal(true)
+      if (word.title) {
+        setTooltip(true)
+        setTimeout(() => {
+          setTooltip(false)
+        }, 2000);
+      } else{
+        setShowModal(true)
+
+      }
     }
 
   return (

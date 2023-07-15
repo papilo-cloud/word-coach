@@ -32,7 +32,6 @@ const ModalDef = ({audio, modalWord, showModal, setShowModal}) => {
                     </div>
                 </div>
                 <button className='btn'
-                
                 onClick={handleClick} >
                     <a href="#one">full definition</a>
                 </button>

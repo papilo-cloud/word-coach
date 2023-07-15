@@ -9,7 +9,6 @@ const Similar = ({antonyms, synonyms}) => {
     const [isMore, setIsMore] = useState(true)
     const [br, setBr] = useState(false)
     const [dissimilar, setDissimilar] = useState(false)
-    const [moreSearch, setMoreSearch] = useState(false)
     const [addMore, setAddMore] = useState(false)
     const [showModal, setShowModal] = useState(false)
     const [words, setWords] = useState([])

@@ -17,8 +17,6 @@ function App() {
   const [isError, setIsError] = useState(false)
   const [modalClose, setModalClose] = useState(false)
 
-  console.log(isOpac)
-
   const fetchWord = async()=>{
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
     .then(resp => {if (!resp.ok) {

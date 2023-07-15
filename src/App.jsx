@@ -15,6 +15,7 @@ function App() {
   const [game, setGame] = useState(false)
   const [isOpac, setIsOpac] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [modalClose, setModalClose] = useState(false)
 
   console.log(isOpac)
 
@@ -71,12 +72,14 @@ function App() {
         words,
         setWords,
         setText,
-        setAudio
+        setAudio,
+        setModalClose,
+        modalClose
       }
     }>
       <div className={isOpac ? 'app opac':'app'} >
       {isError? <p>Error:</p>:
-      <div className="class">
+      <div className="class" id={modalClose? 'one':''} >
         <div className={isOpac ? 'search opac':'search'}>
           <h1>Dictionary</h1>
           <form onSubmit={handleSubmit}>

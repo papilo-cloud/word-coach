@@ -2,7 +2,7 @@
 import React from 'react'
 import SingleDefinition2 from './SingleDefinition2'
 
-const MoreDefinitions = ({meanings, keys}) => {
+const MoreDefinitions = ({meanings}) => {
 
   return (
     <div>

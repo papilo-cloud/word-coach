@@ -38,6 +38,7 @@ const Game = ({data}) => {
   const randomSynonyms = Math.floor(Math.random()* (synonyms.length - 1))
 
   function handleClickOne(params) {
+    alert('Still under construction.')
     setClicked(true)
     if (!antonyms.indexOf(rand[index])) {
       setCorrect(true)

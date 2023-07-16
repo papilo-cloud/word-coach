@@ -115,7 +115,7 @@
   }
 }
 
- .speaker .tooltip{
+ .speaker .tooltip, .butn .tooltip{
   position: absolute;
   padding: 10px;
   width: 110px;
@@ -126,7 +126,7 @@
   transition: .3s;
   transition-delay: .3s;
 }
- .speaker .tooltip .span{
+ .speaker .tooltip .span, .butn .tooltip .span{
   display: block;
   position: absolute;
   width: 10px;
@@ -136,7 +136,7 @@
   left: 15px;
   transform: rotate(45deg);
 }
- .speaker .tooltip .pp{
+ .speaker .tooltip .pp, .butn .tooltip .pp {
   font-size: 0.7rem;
 }
  .speaker button{
@@ -345,7 +345,6 @@
   width: 100%;
   background-color: #222;
   border-radius: 10px;
-  /* background-color: rgba(17, 17, 17,0.5); */
 }
 
 .main .top{
@@ -381,12 +380,7 @@
   font-weight: 600;
   text-transform: none;
 }
-/* .opac{
-  background-color: rgba(17, 17, 17,0.5);
-}
-.class .opac{
-  background-color: rgba(17, 17, 17,0.5);
-} */
+
 .top .score span{
   display: inline-block;
   width: 5px;

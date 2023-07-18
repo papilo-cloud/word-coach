@@ -5,7 +5,7 @@ import cross from '../assets/cross.svg'
 import check from '../assets/checkmark.svg'
 import axios from 'axios'
 
-let randWords = ['hello','cardinal', 'magic','ordain','stagnant']
+let randWords = ['hello','cardinal', 'magic','never','stagnant']
 for (let i = 0; i < randWords.length; i++) {
   
   
@@ -18,7 +18,10 @@ const Game = ({data}) => {
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
   const [correct, setCorrect] = useState(false);
+  const [correct1, setCorrect1] = useState(false);
   const [clicked, setClicked] = useState(false)
+  const [clicked1, setClicked1] = useState(false)
+  // console.log(synonyms)
  
   const setSyn = async() => {
     const url = `https://api.api-ninjas.com/v1/thesaurus?word=${rand[index]}`
@@ -33,19 +36,58 @@ const Game = ({data}) => {
 
   useEffect(() => {
     setSyn()
-  }, [])
-  const randomAntonyms = Math.floor(Math.random()* (antonyms.length -1))
-  const randomSynonyms = Math.floor(Math.random()* (synonyms.length - 1))
+  }, [index])
+  // const randomAntonyms = Math.floor(Math.random()* (antonyms.length -1))
+  // const randomSynonyms = Math.floor(Math.random()* (synonyms.length - 1))
 
-  function handleClickOne(params) {
-    alert('Still under construction.')
-    setClicked(true)
-    if (!antonyms.indexOf(rand[index])) {
-      setCorrect(true)
-    } else {
-      
+  function handleClickOne(params,e) {
+    if (index >= 4) {
+      setIndex(0)
+    } else{
+      setIndex(index + 1)
     }
+    setClicked(true)
+    setTimeout(() => {
+      setClicked(false)
+    }, 1000);
+    if (guess[0].includes(params) ) {
+      setCorrect(true)
+      e.stopPropagation()
+    }
+  else{
+    setCorrect(false)
+    e.stopPropagation()
   }
+
+  }
+  function handleClickTwo(params,e) {
+    if (index >= 4) {
+      setIndex(0)
+    } else{
+      setIndex(index + 1)
+    }
+    setClicked1(true)
+    setTimeout(() => {
+      setClicked1(false)
+    }, 1000);
+    if (guess[0].includes(params) ) {
+      setCorrect1(true)
+      e.stopPropagation()
+    }
+  else{
+    setCorrect1(false)
+    e.stopPropagation()
+  }
+  }
+
+  // const randSyn = synonyms.sort((a,b) => 0.5 - Math.random())
+  // const randAnt = antonyms.sort((a,b) => 0.5 - Math.random())
+  const guess = ['opposite', 'similar'].sort((a,b) => 0.5 - Math.random())
+  const srtBtn = [
+    <button onClick={() => handleClickOne('similar')}>{clicked && <img src={correct? check: check} alt="" /> }{synonyms[0]}</button>,
+    <button onClick={() => handleClickTwo('opposite')}>{clicked1 && <img src={correct1? check: cross} alt="" /> }{antonyms[0]}</button>
+  ].sort((a,b) => 0.5 - Math.random())
+  // console.log(guess[0])
 
   return (
     <div className='main'>
@@ -56,13 +98,15 @@ const Game = ({data}) => {
             </div>
         </div>
         <div className="words">
-            <p>which word is <i>opposite</i> of {rand[index]}?</p>
+            <p>which word is {guess[0].includes('opposite')? `the ${guess[0]} of `: `${guess[0]} to `}  {rand[index]}?</p>
             <div className="box">
-              <button onClick={handleClickOne} className={clicked && correct? 'correct': 'wrong'}>
-                {clicked && <img src={correct? cross: check} alt="" /> }
-                 {antonyms[randomAntonyms]}</button>
+              {/* <button onClick={() =>handleClickOne(antonyms[randomAntonyms])} className={clicked && correct? 'correct': 'wrong'}> */}
+                {/*  */}
+                 {/* {randAnt}</button> */}
+              {srtBtn[0]}
               <p>or</p>
-              <button handleClickTwo>Neighborhood</button>
+              {srtBtn[1]}
+              {/* <button onClick={() => handleClickOne(synonyms[randomSynonyms])}>{randSyn}</button> */}
             </div>
         </div>
         <div className="level">

@@ -27,7 +27,7 @@ function App() {
     } 
     )
     .then(datas => {setWords(datas);
-      setAudio(datas[0].phonetics[0].audio)
+      setAudio(datas[0]?.phonetics[0]?.audio)
     })
     .catch(err => console.log(err))
   }

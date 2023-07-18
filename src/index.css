@@ -366,6 +366,7 @@
   align-items: center;
   gap: 5px;
   justify-content: space-between;
+  padding-right: 20px;
 }
 .main .top .more{
   position: relative;

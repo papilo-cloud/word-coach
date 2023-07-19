@@ -396,7 +396,7 @@
 .main .words p{
   margin-bottom: 10px;
 }
-.words .box button{
+.words .box .buttons{
   width: 100%;
   background-color: inherit;
   outline: none;
@@ -413,12 +413,17 @@
   align-items: center;
   gap: 10px;
   height: 40px;
+  transition: .3s;
 }
 .words .box .correct{
   background-color: #0d0;
+  border-color: #0d0;
+  color: #fff;
 }
 .words .box .wrong{
-  /* background-color: #f81f02; */
+  background-color: #f81f02;
+  border-color: #f81f02;
+  color: #fff;
 }
 .main .level{
   position: relative;
@@ -432,14 +437,94 @@
   width: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.level .span span{
+.level .span .spans{
   display: inline-block;
   width: 5px;
   height: 5px;
-  background-color: #0d0;
+  background-color: #ccc;
   border-radius: 50%;
+}
+.level .span .next{
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+}
+.level .span .correct{
+  background-color: #0d0;
+}
+.level .span .wrong{
+  background-color: #f81f02;
 }
 .main input{
   width: 100%;
+}
+.main .coach{
+  position: relative;
+  padding: 20px;
+}
+.coach > p{
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+ .svg{
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-family: sans-serif;
+}
+ .svg .svgs{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid  rgb(103, 250, 103);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.svg .svgs p{
+  font-size: 1.3rem;
+  font-weight: lighter;
+}
+.svg .txt p{
+  color: rgb(103, 250, 103);
+  margin-bottom: 5px;
+}
+.svg .txt .bold {
+  font-size: 1.4rem;
+  color: inherit;
+  font-weight: 400;
+}
+.coach .round{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.round p{
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.round button{
+  font-size: 0.8em;
+  padding:8px 20px ;
+  background-color: #4b97ee;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.coach .explanation{
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+}
+.explanation p{
+  line-height: 30px;
+
 }

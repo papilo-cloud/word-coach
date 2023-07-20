@@ -15,21 +15,23 @@ function App() {
   const [game, setGame] = useState(false)
   const [isOpac, setIsOpac] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [isErrors, setIsErrors] = useState(false)
   const [modalClose, setModalClose] = useState(false)
 
   const fetchWord = async()=>{
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
     .then(resp => {if (!resp.ok) {
-        setIsError(true)
       }
-      setIsError(false)
       return resp.json()
     } 
     )
     .then(datas => {setWords(datas);
       setAudio(datas[0]?.phonetics[0]?.audio)
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      // setIsErrors(true)
+      console.log(err)
+    })
   }
 
   useEffect(() => {
@@ -49,8 +51,11 @@ function App() {
       e.preventDefault();
       if (text.trim().length == 0) {
           alert('Enter a word')
+      }if (isErrors) {
+        // setIsError(true)
       } else {
-          setText('');
+        // setIsError(false)
+        setText('');
           fetchWord()
           setGame(true)
     }

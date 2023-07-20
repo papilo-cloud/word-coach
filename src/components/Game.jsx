@@ -20,7 +20,8 @@ const Game = ({data}) => {
   const [clicked1, setClicked1] = useState(false)
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
-  // console.log(rand.length)
+  const [point, setPoint] = useState(0)
+  console.log(point)
  
   const setSyn = async() => {
     const url = `https://api.api-ninjas.com/v1/thesaurus?word=${rand[index]}`
@@ -40,7 +41,7 @@ const Game = ({data}) => {
 
   function handleClickOne(params) {
     setTimeout(() => {
-      if (index >= 4) {
+      if (index > 4) {
         setIndex(0)
       } else{
         setIndex(index + 1)
@@ -54,7 +55,8 @@ const Game = ({data}) => {
     if (guess[0].includes(params) ) {
       setCorrect(true)
       setScore(score + 200)
-      // alert('correct')
+        setPoint(point + 1)
+        // alert('correct')
     }
     else{
       setCorrect(false)
@@ -64,7 +66,7 @@ const Game = ({data}) => {
   }
   function handleClickTwo(params) {
     setTimeout(() => {
-      if (index >= 4) {
+      if (index > 4) {
         setIndex(0)
       } else{
         setIndex(index + 1)
@@ -77,7 +79,8 @@ const Game = ({data}) => {
     }, 1100);
     if (guess[0].includes(params) ) {
       setCorrect1(true)
-      setScore(score + 200)
+        setPoint(point + 1)
+        setScore(score + 200)
       // alert('correct')
     }
     else{
@@ -105,7 +108,10 @@ const Game = ({data}) => {
 
   return (
     <div className='main'>
-      {index < 4? (
+      {index > 4? (
+        
+        <GameMeaning score={score} setIndex={setIndex} setPoint={setPoint} point={point} />
+      ): (
         <div>
         <div className="top">
             <p>word coach</p>
@@ -135,8 +141,6 @@ const Game = ({data}) => {
             <p>skip</p>
         </div>
         </div>
-      ): (
-        <GameMeaning score={score} />
       )}
         
     </div>

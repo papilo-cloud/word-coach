@@ -8,20 +8,22 @@ import GameMeaning from './GameMeaning'
 
 let randWords = ['hello','cardinal', 'magic','never','stagnant']
 
-const Game = ({data}) => {
+const Game = () => {
 
   const [rand, setRand] = useState(randWords)
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
-  const [correct, setCorrect] = useState(false);
+    const [word, setWord] = useState([])
+    const [correct, setCorrect] = useState(false);
   const [correct1, setCorrect1] = useState(false);
   const [clicked, setClicked] = useState(false)
   const [clicked1, setClicked1] = useState(false)
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
-  console.log(point)
+
+  console.log(word)
  
   const setSyn = async() => {
     const url = `https://api.api-ninjas.com/v1/thesaurus?word=${rand[index]}`
@@ -38,8 +40,14 @@ const Game = ({data}) => {
     setSyn()
   }, [index])
 
+  const fetchWords = async (url) => {
+    const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${url}`);
+    const words = await data.json();
+    setWord([...word, words]);
+  }
 
-  function handleClickOne(params) {
+
+  const handleClickOne = async (params) => {
     setTimeout(() => {
       if (index > 4) {
         setIndex(0)
@@ -93,12 +101,12 @@ const Game = ({data}) => {
   const srtBtn = [
     <button 
       className={clicked && correct? 'buttons correct': clicked && !correct? 'buttons wrong': 'buttons'} 
-      onClick={() => handleClickOne('similar')}>
+      onClick={() => {handleClickOne('similar'); fetchWords(rand[index])}}>
       {clicked && <img src={correct? check: cross} alt="check/cross" /> }{synonyms[0]}
       </button>,
     <button
       className={clicked1 && correct1? 'buttons correct': clicked1 && !correct1? 'buttons wrong': 'buttons'} 
-      onClick={() => handleClickTwo('opposite')}>
+      onClick={() => {handleClickTwo('opposite'); fetchWords(rand[index])}}>
       {clicked1 && <img src={correct1? check: cross} alt="check/cross" /> }{antonyms[0]}
       </button>
   ].sort((a,b) =>
@@ -110,7 +118,7 @@ const Game = ({data}) => {
     <div className='main'>
       {index > 4? (
         
-        <GameMeaning score={score} setIndex={setIndex} setPoint={setPoint} point={point} />
+        <GameMeaning score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
       ): (
         <div>
         <div className="top">

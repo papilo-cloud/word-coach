@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const GameMeaning = ({score, setIndex, setPoint, point}) => {
+const GameMeaning = ({score, setIndex, setPoint, point, word}) => {
+
 
     let board ='';
     if (point == 0) {
@@ -21,8 +22,6 @@ const GameMeaning = ({score, setIndex, setPoint, point}) => {
     if (point == 5) {
         board = 'Perfect'
     }
-    const explanation = []
-    
   return (
     <div className='coach'>
         <p>word coach</p>
@@ -40,21 +39,9 @@ const GameMeaning = ({score, setIndex, setPoint, point}) => {
             <button onClick={() => {setPoint(0); setIndex(0)}}>Next round</button>
         </div>
         <div className="explanation">
-            <div className="text">
-                <p>hello World one</p>
-            </div>
-            <div className="text">
-                <p>hello World one</p>
-            </div>
-            <div className="text">
-                <p>hello World one</p>
-            </div>
-            <div className="text">
-                <p>hello World one</p>
-            </div>
-            <div className="text">
-                <p>hello World one</p>
-            </div>
+           {word?.map((wrd, x) => <div className="text" key={x}>
+                <p>{wrd[0].word}</p>
+            </div>)}
         </div>
     </div>
   )

@@ -524,18 +524,54 @@
 .coach .explanation{
   position: relative;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }
 .explanation .text{
-  padding: 15px;
   position: relative;
-  border-bottom: 1px solid #ccc;
 }
-.explanation .text:nth-child(5){
+.explanation .text .exp-butn{
+  position: relative;
+  background-color: inherit;
   border: none;
+  padding: 15px;
+  font-size: 0.9rem;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 0;
+  border-left: 0;
 }
-.explanation p{
-  line-height: 30px;
+.explanation .text .exp-butn p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: .6px;
+  
+}
+.explanation .text .exp-butn p img{
+  margin-right: 10px;
+}
+.explanation .text .exp-text{
+  /* margin-top: 10px; */
+  padding: 15px;
+  display: none;
+}
+.explanation .text .display{
+  display: block;
+}
 
+.explanation .text .exp-text .p{
+  line-height: 30px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #fff;
+  font-size: 1rem;
+}
+.explanation .text .exp-text p{
+  font-size: .9em;
+  line-height: 20px;
 }

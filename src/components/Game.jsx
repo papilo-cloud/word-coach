@@ -7,13 +7,37 @@ import axios from 'axios'
 import GameMeaning from './GameMeaning'
 
 let randWords = ['hello','cardinal', 'magic','never','stagnant']
+let rndm = [];
+    for (let i = 0; i < 40; i++) {
+        const url = 'https://api.api-ninjas.com/v1/randomword'
+        const config = {
+          headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+        };
+        axios.get(url, config)
+        .then(res=> {
+          const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res.data.word}`
+          const config1 = {
+            headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+          };
+          axios.get(url1, config1)
+          .then(res=> {if (res.data.synonyms.length >1 && res.data.antonyms.length >1) {
+            return rndm.push(res.data.word)
+          }})
+        } )
+        .catch(err=> console.log(err.message))
+        
+    }
+
+console.log(rndm)
 
 const Game = () => {
 
-  const [rand, setRand] = useState(randWords)
+  const [rand, setRand] = useState(rndm.slice(0,5))
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
+  const [val, setVal] = useState([])
+  const [guesses, setGuesses] = useState([])
     const [word, setWord] = useState([])
     const [correct, setCorrect] = useState(false);
   const [correct1, setCorrect1] = useState(false);
@@ -22,8 +46,13 @@ const Game = () => {
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
+  // const [rndm, setRndm] = useState([{word: 'hello', select: false}])
 
-  console.log(word)
+  // console.log(word)
+
+  useEffect(() => {
+  }, [])
+  
  
   const setSyn = async() => {
     const url = `https://api.api-ninjas.com/v1/thesaurus?word=${rand[index]}`
@@ -32,7 +61,8 @@ const Game = () => {
     };
     axios.get(url, config)
     .then(res=> {setAntonyms(res.data.antonyms )
-                  setSynonyms(res.data.synonyms)})
+                  setSynonyms(res.data.synonyms)
+                console.log(res.data)})
     .catch(err=> console.log(err.message))
   }
 
@@ -47,7 +77,7 @@ const Game = () => {
   }
 
 
-  const handleClickOne = async (params) => {
+  const handleClickOne = (params) => {
     setTimeout(() => {
       if (index > 4) {
         setIndex(0)
@@ -61,13 +91,17 @@ const Game = () => {
       setClicked(false)
     }, 1100);
     if (guess[0].includes(params) ) {
+      setGuesses([...guesses, params])
       setCorrect(true)
+      setVal([...val,true])
       setScore(score + 200)
         setPoint(point + 1)
         // alert('correct')
     }
     else{
+      setGuesses([...guesses, params])
       setCorrect(false)
+      setVal([...val,false])
       // alert('false')
     }
 
@@ -86,13 +120,17 @@ const Game = () => {
       setClicked1(false)
     }, 1100);
     if (guess[0].includes(params) ) {
+      setGuesses([...guesses, params])
+      setVal([...val,true])
       setCorrect1(true)
         setPoint(point + 1)
         setScore(score + 200)
       // alert('correct')
     }
     else{
+      setGuesses([...guesses, params])
       setCorrect1(false)
+      setVal([...val,false])
       // alert('false')
     }
   }
@@ -102,12 +140,12 @@ const Game = () => {
     <button 
       className={clicked && correct? 'buttons correct': clicked && !correct? 'buttons wrong': 'buttons'} 
       onClick={() => {handleClickOne('similar'); fetchWords(rand[index])}}>
-      {clicked && <img src={correct? check: cross} alt="check/cross" /> }{synonyms[0]}
+      {clicked && <img src={correct? check: cross} alt="check/cross" /> }{synonyms[0] || synonyms[1]}
       </button>,
     <button
       className={clicked1 && correct1? 'buttons correct': clicked1 && !correct1? 'buttons wrong': 'buttons'} 
       onClick={() => {handleClickTwo('opposite'); fetchWords(rand[index])}}>
-      {clicked1 && <img src={correct1? check: cross} alt="check/cross" /> }{antonyms[0]}
+      {clicked1 && <img src={correct1? check: cross} alt="check/cross" /> }{antonyms[0] || antonyms[1]}
       </button>
   ].sort((a,b) =>
     0.5 - Math.random())
@@ -118,7 +156,7 @@ const Game = () => {
     <div className='main'>
       {index > 4? (
         
-        <GameMeaning score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
+        <GameMeaning guesses={guesses} val={val} setWord={setWord} score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
       ): (
         <div>
         <div className="top">
@@ -143,7 +181,7 @@ const Game = () => {
           <div className="level">
             <div><img src={image} alt="i" /></div>
             <div className="span">
-              {rand.map((spn, i) => <span 
+              {rand.map((spn, i) => <span key={i}
               className={index == i? 'spans next':'spans'} ></span> )}
             </div>
             <p>skip</p>

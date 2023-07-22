@@ -5,7 +5,7 @@ import check from '../assets/checkmarkn.svg'
 
 const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word}) => {
     const [click, setClick] = useState(7)
-    console.log(word)
+    // console.log(word)
 
 
     let board ='';
@@ -51,13 +51,13 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
            {word?.map((wrd, x) => <div className="text" key={x}>
             <button className='exp-butn' onClick={() => handleClick(x)}>
                <p> {val[x]? <img src={check} alt="check" />: <img src={cross} alt="cross" /> } 
-                Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0].word}?</p>
+                Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0]?.word}?</p>
                 <img src={arrow} alt="down-arrow" />
             </button>
             <div className={click == x? "exp-text display": "exp-text"}>
                 <p className='p'>Learn why</p>
-                <p>What's the definition of {wrd[0].word}?</p>
-                <p> {wrd[0].meanings[0].definitions[0].definition} </p>
+                <p>What's the definition of {wrd[0]?.word}?</p>
+                <p> {wrd[0]?.meanings[0]?.definitions[0]?.definition} </p>
             </div>
             </div>)}
         </div>

@@ -28,7 +28,7 @@ let rndm = [];
         
     }
 
-console.log(rndm)
+// console.log(rndm)
 
 const Game = () => {
 
@@ -62,7 +62,7 @@ const Game = () => {
     axios.get(url, config)
     .then(res=> {setAntonyms(res.data.antonyms )
                   setSynonyms(res.data.synonyms)
-                console.log(res.data)})
+                })
     .catch(err=> console.log(err.message))
   }
 

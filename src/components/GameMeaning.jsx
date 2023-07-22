@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
+import arrow from '../assets/down-arrow.svg'
+import cross from '../assets/crossn.svg'
+import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({score, setIndex, setPoint, point, word}) => {
+const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word}) => {
+    const [click, setClick] = useState(7)
+    console.log(word)
 
 
     let board ='';
@@ -22,6 +27,10 @@ const GameMeaning = ({score, setIndex, setPoint, point, word}) => {
     if (point == 5) {
         board = 'Perfect'
     }
+
+    function handleClick(arg) {
+        setClick(arg)
+    }
   return (
     <div className='coach'>
         <p>word coach</p>
@@ -36,11 +45,20 @@ const GameMeaning = ({score, setIndex, setPoint, point, word}) => {
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {setPoint(0); setIndex(0)}}>Next round</button>
+            <button onClick={() => {setPoint(0); setIndex(0); setWord([])}}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>
-                <p>{wrd[0].word}</p>
+            <button className='exp-butn' onClick={() => handleClick(x)}>
+               <p> {val[x]? <img src={check} alt="check" />: <img src={cross} alt="cross" /> } 
+                Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0].word}?</p>
+                <img src={arrow} alt="down-arrow" />
+            </button>
+            <div className={click == x? "exp-text display": "exp-text"}>
+                <p className='p'>Learn why</p>
+                <p>What's the definition of {wrd[0].word}?</p>
+                <p> {wrd[0].meanings[0].definitions[0].definition} </p>
+            </div>
             </div>)}
         </div>
     </div>

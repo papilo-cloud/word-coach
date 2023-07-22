@@ -60,11 +60,6 @@ function App() {
           setGame(true)
     }
   }
- 
-  
-    
-    // console.log(words)
-
 
 
   return (
@@ -75,6 +70,7 @@ function App() {
         words,
         setWords,
         setText,
+        text,
         setAudio,
         setModalClose,
         modalClose

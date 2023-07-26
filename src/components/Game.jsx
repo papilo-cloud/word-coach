@@ -8,7 +8,7 @@ import GameMeaning from './GameMeaning'
 
 let randWords = ['hello','cardinal', 'magic','never','stagnant']
 let rndm = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 200; i++) {
         const url = 'https://api.api-ninjas.com/v1/randomword'
         const config = {
           headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
@@ -28,11 +28,10 @@ let rndm = [];
         
     }
 
-// console.log(rndm)
+console.log(rndm)
 
 const Game = () => {
 
-  const [rand, setRand] = useState(rndm.slice(0,5))
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
@@ -46,9 +45,10 @@ const Game = () => {
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
-  // const [rndm, setRndm] = useState([{word: 'hello', select: false}])
+  const [number, setNumber] = useState(0)
+  const [rand, setRand] = useState(rndm.slice(number,(number + 5)))
 
-  // console.log(word)
+  console.log(rndm.length)
 
   useEffect(() => {
   }, [])
@@ -150,13 +150,11 @@ const Game = () => {
   ].sort((a,b) =>
     0.5 - Math.random())
 
-  // console.log(guess[0])
-
   return (
     <div className='main'>
       {index > 4? (
         
-        <GameMeaning guesses={guesses} val={val} setWord={setWord} score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
+        <GameMeaning guesses={guesses} val={val} setNumber={setNumber} setWord={setWord} score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
       ): (
         <div>
         <div className="top">

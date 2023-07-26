@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word}) => {
+const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word, setNumber}) => {
     const [click, setClick] = useState(7)
-    // console.log(word)
 
+    const circle = useRef()
+
+    useEffect(() => {
+        let svg = circle.current;
+        let length = svg.getTotalLength();
+        // console.log(length)
+        svg.style.strokeDasharray = length;
+        svg.style.strokeDashoffset = length
+        let ans = 35.12899 * (5-point);
+        svg.getBoundingClientRect();
+        svg.style.transition = 'stroke-dashoffset 1s ease-in-out'
+        svg.style.strokeDashoffset = ans
+    }, [])
+    
 
     let board ='';
     if (point == 0) {
@@ -36,6 +49,9 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
         <p>word coach</p>
         <div className="svg">
             <div className='svgs'>
+                <svg>
+                    <circle cx={32} cy={32} r={28} fill='none' ref={circle} />
+                </svg>
                 <p>{point}/5</p>
             </div>
             <div className="txt">
@@ -45,7 +61,7 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {setPoint(0); setIndex(0); setWord([])}}>Next round</button>
+            <button onClick={() => {setPoint(0);setNumber(5); setIndex(0); setWord([])}}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>

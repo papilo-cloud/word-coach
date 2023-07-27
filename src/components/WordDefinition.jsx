@@ -17,8 +17,8 @@ const WordDefinition = ({data, audio}) => {
           <div className="def">
             <div className="meaning">
               <Speaker audio={audio} />
-              <p>{data[0].word}
-              <br /><span>{data[0].phonetics.length == 0? data[0].phonetic: data[0].phonetics[0].text}</span>
+              <p>{data[0]?.word}
+              <br /><span>{data[0]?.phonetics.length == 0? data[0]?.phonetic: data[0]?.phonetics[0].text}</span>
               </p>
             </div>
             <div className="definition">

@@ -50,6 +50,7 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
         <div className="svg">
             <div className='svgs'>
                 <svg>
+                    <circle cx={32} cy={32} r={28} fill='none' />
                     <circle cx={32} cy={32} r={28} fill='none' ref={circle} />
                 </svg>
                 <p>{point}/5</p>

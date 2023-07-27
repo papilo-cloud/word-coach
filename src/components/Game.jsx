@@ -8,7 +8,7 @@ import GameMeaning from './GameMeaning'
 
 let randWords = ['hello','cardinal', 'magic','never','stagnant']
 let rndm = [];
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 300; i++) {
         const url = 'https://api.api-ninjas.com/v1/randomword'
         const config = {
           headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 

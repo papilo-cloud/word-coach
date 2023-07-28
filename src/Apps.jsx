@@ -2,68 +2,49 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { forwardRef } from 'react'
 
-function Apps() {
-   const [index, setIndex] = useState(0)
-   const myRef = useRef(null)
+function itemize(text) {
+    const letters = text.split('')
+        .filter(l => l !== ' ')
+        .reduce((collection, item) => {
+            const letter = item.toLowerCase();
+            return {
+                ...collection,
+                [letter]: (collection[letter] || 0) + 1
+            }
+        }, {})
+    return Object.entries(letters)
+            .sort((a, b) => b[1] - a[1]);
 
-   useEffect(() =>{
-    function handleScroll(e) {
-        console.log(window.scrollX, window.scrollY)
+}
+
+function CharacterMap({ text }) {
+
+    
+    return(
+     <div>
+     Character Map:
+     {itemize(text).map(txt => <div key={txt[0]}>
+        {txt[0]}:{txt[1]}
+     </div> )}
+     </div>
+     )
     }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll)
-   }, [])
+    
 
-//    function addScroll() {
-//     if (index < images.length - 1) {
-//         setIndex(index + 1)
-//     } else {
-//         setIndex(0)
-//     }
-//     myRef.current.scrollIntoView({
-//         behavior: 'smooth',
-//         block: 'nearest',
-//         inline: 'center'
-//     })
-//    }
+function Apps() {
+
   return (
     <div style={{
         width: 300,
         height: 1000,
         backgroundColor: 'red',
     }}>
-        {/* <button
-        style={{position: 'fixed' }}
-         onClick={addScroll}>Next</button>
-       <ul style={{
-        display: 'flex',
-        gap: 10,
-        paddingTop:40,
-        listStyle:'none',
-       }}>
-        {images.map((imgs,i) => <li 
-        style={{
-            border: index === i? '10px solid #0076ff': '',
-            padding:0
-        }}
-         ref={index === i? myRef : null}
-         key={imgs.id}>
-            <img src={imgs.imageUrl}></img>
-        </li> )}
-       </ul> */}
+        <label htmlFor='text'>
+            <textarea name="text" id="text" cols="300" rows="10"></textarea>
+        </label>
     </div>
   )
 }
 
-const images = [];
-
-for (let i = 0; i < 10; i++) {
-    images.push({
-        id: i,
-        imageUrl: `https://placekitten.com/250/200?image=${i}`
-    });
-    
-}
-console.log(images)
 
 export default Apps;

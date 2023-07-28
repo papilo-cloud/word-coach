@@ -27,9 +27,9 @@ const Speaker = ({audio}) => {
     <div className={animate ? 'speaker animate': 'speaker'}>
       <div className="tooltip" style={{
         display:tooltip? 'block': 'none'
-      }}>
-        <span></span>
-        <p>Not available</p>
+        }}>
+        <span className='span'></span>
+        <p className='pp'>Not available</p>
       </div>
         <button onClick={handleClick}>
           <img src={speaker} alt="speaker" />

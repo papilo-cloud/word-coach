@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import SingleDefinition from './SingleDefinition'
 import MoreDefinitions from './MoreDefinitions'
 import arrow from '../assets/down-arrow.svg'
+import { useEffect } from 'react'
 
 
 const Definition = ({data}) => {
   const [showMore, setShowMore] = useState(false)
 
-  return (
+  return ( 
     <>
     {data.length > 1  && <p className='num'>Meaning: 1</p> }
     {data[0].meanings.map((mean, x) => <SingleDefinition {...mean} key={x} /> )} 
     
-    {showMore && data.slice(1).map((data, x) => <div>
+    {showMore && data.slice(1).map((data, x) => <div key={x}>
         <p className='num'>Meaning: {x+2}</p><MoreDefinitions key={x} {...data} />
       </div> 
       )} 

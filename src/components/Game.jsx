@@ -7,7 +7,7 @@ import axios from 'axios'
 import GameMeaning from './GameMeaning'
 
 let rndm = [];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 80; i++) {
         const url = 'https://api.api-ninjas.com/v1/randomword'
         const config = {
           headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 

@@ -5,8 +5,6 @@ import check from '../assets/checkmarkn.svg'
 
 const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
-    console.log(antonyms[0] || antonyms[1])
-    console.log(synonyms[0] || synonyms[1])
 
     const circle = useRef()
 

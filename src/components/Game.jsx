@@ -27,7 +27,7 @@ let rndm = [];
         
     }
 
-// console.log(rndm)
+console.log(rndm)
 
 const Game = () => {
   // const [number, setNumber] = useState(0)
@@ -45,9 +45,6 @@ const Game = () => {
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
-  const [syns, setSyns] = useState([])
-
-  console.log(syns)
 
   useEffect(() => {
   }, [])
@@ -73,7 +70,6 @@ const Game = () => {
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${url}`);
     const words = await data.json();
     setWord([...word, words]);
-    // setSyns([...syns, synonyms[0]])
   }
 
 

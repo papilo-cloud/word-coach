@@ -3,8 +3,10 @@ import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word, setNumber}) => {
+const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
+    console.log(antonyms[0] || antonyms[1])
+    console.log(synonyms[0] || synonyms[1])
 
     const circle = useRef()
 
@@ -62,7 +64,7 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {setPoint(0);setNumber(5); setIndex(0); setWord([])}}>Next round</button>
+            <button onClick={() => {setPoint(0); setIndex(0); setWord([])}}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>
@@ -75,6 +77,7 @@ const GameMeaning = ({guesses, val, setWord, score, setIndex, setPoint, point, w
                 <p className='p'>Learn why</p>
                 <p>What's the definition of {wrd[0]?.word}?</p>
                 <p> {wrd[0]?.meanings[0]?.definitions[0]?.definition} </p>
+                <p> {wrd[1]?.meanings[0]?.definitions[0]?.definition} </p>
             </div>
             </div>)}
         </div>

@@ -6,32 +6,32 @@ import check from '../assets/checkmark.svg'
 import axios from 'axios'
 import GameMeaning from './GameMeaning'
 
-let randWords = ['hello','cardinal', 'magic','never','stagnant']
 let rndm = [];
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 30; i++) {
         const url = 'https://api.api-ninjas.com/v1/randomword'
         const config = {
           headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
         };
         axios.get(url, config)
         .then(res=> {
-          const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res.data.word}`
+          const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res?.data?.word}`
           const config1 = {
             headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
           };
           axios.get(url1, config1)
-          .then(res=> {if (res.data.synonyms.length >1 && res.data.antonyms.length >1) {
-            return rndm.push(res.data.word)
+          .then(res=> {if (res?.data?.synonyms?.length >1 && res?.data?.antonyms?.length >1) {
+            return rndm.push(res?.data?.word)
           }})
         } )
         .catch(err=> console.log(err.message))
         
     }
 
-console.log(rndm)
+// console.log(rndm)
 
 const Game = () => {
-
+  // const [number, setNumber] = useState(0)
+  const [rand, setRand] = useState(rndm.slice(0, 5))
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
@@ -45,10 +45,9 @@ const Game = () => {
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
-  const [number, setNumber] = useState(0)
-  const [rand, setRand] = useState(rndm.slice(number,(number + 5)))
+  const [syns, setSyns] = useState([])
 
-  console.log(rndm.length)
+  console.log(syns)
 
   useEffect(() => {
   }, [])
@@ -60,8 +59,8 @@ const Game = () => {
       headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
     };
     axios.get(url, config)
-    .then(res=> {setAntonyms(res.data.antonyms )
-                  setSynonyms(res.data.synonyms)
+    .then(res=> {setAntonyms(res?.data?.antonyms )
+                  setSynonyms(res?.data?.synonyms)
                 })
     .catch(err=> console.log(err.message))
   }
@@ -74,6 +73,7 @@ const Game = () => {
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${url}`);
     const words = await data.json();
     setWord([...word, words]);
+    // setSyns([...syns, synonyms[0]])
   }
 
 
@@ -154,7 +154,13 @@ const Game = () => {
     <div className='main'>
       {index > 4? (
         
-        <GameMeaning guesses={guesses} val={val} setNumber={setNumber} setWord={setWord} score={score} setIndex={setIndex} setPoint={setPoint} point={point} word={word} />
+        <GameMeaning
+         guesses={guesses}
+         synonyms={synonyms}
+         antonyms={antonyms}
+          val={val}setWord={setWord}
+           score={score} setIndex={setIndex}
+            setPoint={setPoint} point={point} word={word} />
       ): (
         <div>
         <div className="top">

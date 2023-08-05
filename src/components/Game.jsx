@@ -5,6 +5,7 @@ import cross from '../assets/cross.svg'
 import check from '../assets/checkmark.svg'
 import axios from 'axios'
 import GameMeaning from './GameMeaning'
+import { motion } from "framer-motion";
 
 let rndm = [];
     for (let i = 0; i < 80; i++) {
@@ -27,7 +28,11 @@ let rndm = [];
         
     }
 
-console.log(rndm)
+// console.log(rndm)
+
+const variants = {
+  open: { opacity: 1},
+}
 
 const Game = () => {
   // const [number, setNumber] = useState(0)
@@ -45,6 +50,7 @@ const Game = () => {
   const [click, setClick] = useState(false)
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
   }, [])
@@ -59,7 +65,9 @@ const Game = () => {
     .then(res=> {setAntonyms(res?.data?.antonyms )
                   setSynonyms(res?.data?.synonyms)
                 })
-    .catch(err=> console.log(err.message))
+    .catch(
+      // err=> console.log(err.message)
+    )
   }
 
   useEffect(() => {
@@ -74,6 +82,8 @@ const Game = () => {
 
 
   const handleClickOne = (params) => {
+    setCount(count+1);
+
     setTimeout(() => {
       if (index > 4) {
         setIndex(0)
@@ -103,6 +113,8 @@ const Game = () => {
 
   }
   function handleClickTwo(params) {
+    setCount(count+1);
+
     setTimeout(() => {
       if (index > 4) {
         setIndex(0)
@@ -147,16 +159,25 @@ const Game = () => {
     0.5 - Math.random())
 
   return (
-    <div className='main'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: index == count ? 1: 0 }}
+      transition={{duration: .4,  delay: .3 }}
+      className='main'>
       {index > 4? (
         
         <GameMeaning
-         guesses={guesses}
-         synonyms={synonyms}
-         antonyms={antonyms}
-          val={val}setWord={setWord}
-           score={score} setIndex={setIndex}
-            setPoint={setPoint} point={point} word={word} />
+          setCount={setCount}
+          guesses={guesses}
+          synonyms={synonyms}
+          antonyms={antonyms}
+          val={val}
+          setWord={setWord}
+          score={score} 
+          setIndex={setIndex}
+          setPoint={setPoint} 
+          point={point} 
+          word={word} />
       ): (
         <div>
         <div className="top">
@@ -170,7 +191,9 @@ const Game = () => {
             </div>
             }
         </div>
-          <div className="words">
+          <div className="words"
+          
+          >
               <p>which word is {guess[0].includes('opposite')? `the ${guess[0]} of `: `${guess[0]} to `}  {rand[index]}?</p>
               <div className="box">
                 {srtBtn[0]}
@@ -189,7 +212,7 @@ const Game = () => {
         </div>
       )}
         
-    </div>
+    </motion.div>
   )
 }
 

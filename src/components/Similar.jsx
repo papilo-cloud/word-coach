@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import ModalDef from './ModalDef'
 import { ModalContext } from './ModalContext'
+import { motion } from "framer-motion";
 
 
 

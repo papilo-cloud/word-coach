@@ -1,6 +1,7 @@
 
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { forwardRef } from 'react'
+import { motion } from "framer-motion";
 
 function itemize(text) {
     const letters = text.split('')
@@ -30,19 +31,24 @@ function CharacterMap({ text }) {
      )
     }
     
+    const variants = {
+        open: { opacity: 1, x: 0 },
+      }
 
 function Apps() {
+    const [mon, setMon] = useState(false)
 
   return (
-    <div style={{
-        width: 300,
-        height: 1000,
-        backgroundColor: 'red',
-    }}>
-        <label htmlFor='text'>
-            <textarea name="text" id="text" cols="300" rows="10"></textarea>
-        </label>
-    </div>
+    <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{  delay: .3 }}
+    >
+        <h1>hello</h1>
+        <div>
+            <button onClick={() => setMon(!mon)}>click me</button>
+        </div>
+    </motion.div>
   )
 }
 

@@ -482,9 +482,6 @@
   position: relative;
   width: 65px;
   height: 65px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 .svg .svgs svg{
   position: relative;
@@ -493,14 +490,14 @@
 }
 .svg .svgs svg circle{
   stroke: rgb(10, 95, 10);
-  stroke-width: 5.2px;
+  stroke-width: 6.9px;
   transform: rotate(90deg);
   transform-origin: 50% 50%;
-  stroke-linecap: round;
+  stroke-linecap: butt;
 }
 .svg .svgs svg circle:nth-child(1){
   stroke: #fff;
-  stroke-width: 4.9px;
+  stroke-width: 6.9px;
 }
 .svg .svgs p{
   position: absolute;
@@ -508,7 +505,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.3rem;
-  font-weight: lighter;
+  font-weight: 500;
 }
 .svg .txt p{
   color: rgb(103, 250, 103);
@@ -575,7 +572,6 @@
   margin-right: 10px;
 }
 .explanation .text .exp-text{
-  /* margin-top: 10px; */
   padding: 15px;
   display: none;
   transition: .3s;

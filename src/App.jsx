@@ -29,8 +29,7 @@ function App() {
       setAudio(datas[0]?.phonetics[0]?.audio)
     })
     .catch(err => {
-      // setIsErrors(true)
-      console.log(err)
+      // console.log(err)
     })
   }
 

@@ -30,10 +30,6 @@ let rndm = [];
 
 // console.log(rndm)
 
-const variants = {
-  open: { opacity: 1},
-}
-
 const Game = () => {
   // const [number, setNumber] = useState(0)
   const [rand, setRand] = useState(rndm.slice(0, 5))
@@ -142,6 +138,10 @@ const Game = () => {
       // alert('false')
     }
   }
+  function onSkip() {
+    // setIndex(index + 1)
+    // console.log(index)
+  }
 
   const guess = ['opposite', 'similar'].sort((a,b) => 0.5 - Math.random())
   const srtBtn = [
@@ -162,7 +162,7 @@ const Game = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: index == count ? 1: 0 }}
-      transition={{duration: .4,  delay: .3 }}
+      transition={{duration: .4,  delay: 1 }}
       className='main'>
       {index > 4? (
         
@@ -207,7 +207,7 @@ const Game = () => {
               {rand.map((spn, i) => <span key={i}
               className={index == i? 'spans next':'spans'} ></span> )}
             </div>
-            <p>skip</p>
+            <button onClick={onSkip}>skip</button>
         </div>
         </div>
       )}

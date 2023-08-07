@@ -62,7 +62,7 @@ const GameMeaning = ({guesses, val, setCount, setWord, score, setIndex, setPoint
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {setPoint(0); setCount(0); setIndex(0); setWord([])}}>Next round</button>
+            <button onClick={() => {alert('Under Development');setPoint(0); setCount(0); setIndex(0); setWord([])}}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>

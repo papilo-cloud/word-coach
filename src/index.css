@@ -457,6 +457,13 @@
 .level .span .wrong{
   background-color: #f81f02;
 }
+.level button{
+  background-color: inherit;
+  border: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8em;
+  letter-spacing: 0.8px;
+}
 .main input{
   width: 100%;
 }
@@ -490,14 +497,14 @@
 }
 .svg .svgs svg circle{
   stroke: rgb(10, 95, 10);
-  stroke-width: 6.9px;
+  stroke-width: 6.4px;
   transform: rotate(90deg);
   transform-origin: 50% 50%;
   stroke-linecap: butt;
 }
 .svg .svgs svg circle:nth-child(1){
   stroke: #fff;
-  stroke-width: 6.9px;
+  stroke-width: 6.4px;
 }
 .svg .svgs p{
   position: absolute;

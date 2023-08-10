@@ -55,10 +55,12 @@ const Similar = ({antonyms, synonyms}) => {
     function handleChange() {
       if (isMore) {
         setMore(antonyms.length+synonyms.length)
-        setIsMore(!isMore)
+        setIsMore(false)
         setBr(true)
         setDissimilar(true)
-      } 
+      } else{
+        setIsMore(true)
+      }
     }
     
     const fetchWord = async (url)=>{
@@ -97,7 +99,7 @@ const Similar = ({antonyms, synonyms}) => {
               </>: ''
               }
             </>
-            {
+            { 
               addMore && <button 
               className='arrow'
               onClick={handleChange}>

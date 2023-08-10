@@ -160,7 +160,7 @@ const Game = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: index == count ? 1: 0 }}
-      transition={{duration: .7,  delay: 0.1 }}
+      transition={{duration: .4,  delay: 0.1 }}
       className='main'>
       {index > 4? (
         

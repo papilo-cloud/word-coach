@@ -129,13 +129,11 @@ const Game = () => {
       setCorrect1(true)
         setPoint(point + 1)
         setScore(score + 200)
-      // alert('correct')
     }
     else{
       setGuesses([...guesses, params])
       setCorrect1(false)
       setVal([...val,false])
-      // alert('false')
     }
   }
   function onSkip() {
@@ -162,7 +160,7 @@ const Game = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: index == count ? 1: 0 }}
-      transition={{duration: .4,  delay: .9 }}
+      transition={{duration: .7,  delay: 0.1 }}
       className='main'>
       {index > 4? (
         

@@ -24,7 +24,7 @@ let rndm = [];
             return rndm.push(res?.data?.word)
           }})
         } )
-        .catch(err=> console.log(err.message))
+        // .catch(err=> console.log(err.message))
         
     }
 
@@ -36,6 +36,8 @@ const Game = () => {
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
+  const [getSyn, setGetSyn] = useState([])
+  const [getAnt, setGetAnt] = useState([])
   const [val, setVal] = useState([])
   const [guesses, setGuesses] = useState([])
     const [word, setWord] = useState([])
@@ -58,14 +60,17 @@ const Game = () => {
       headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
     };
     axios.get(url, config)
-    .then(res=> {setAntonyms(res?.data?.antonyms )
-                  setSynonyms(res?.data?.synonyms)
+    .then(res=> {setAntonyms(res?.data?.antonyms );
+                  setSynonyms(res?.data?.synonyms);
+                  setGetSyn([...getSyn, res?.data?.synonyms[0]]);
+                  setGetAnt([...getAnt, res?.data?.antonyms[0]])
                 })
     .catch(
       // err=> console.log(err.message)
     )
   }
-
+  // console.log(getSyn)
+  // console.log(getAnt)
   useEffect(() => {
     setSyn()
   }, [index])
@@ -75,7 +80,7 @@ const Game = () => {
     const words = await data.json();
     setWord([...word, words]);
   }
-
+  // console.log(word)
 
   const handleClickOne = (params) => {
     setCount(count+1);
@@ -160,12 +165,14 @@ const Game = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: index == count ? 1: 0 }}
-      transition={{duration: .4,  delay: 0.1 }}
+      transition={{duration: .5,  delay: 0.5 }}
       className='main'>
       {index > 4? (
         
         <GameMeaning
           setCount={setCount}
+          getAnt={getAnt}
+          getSyn={getSyn}
           guesses={guesses}
           synonyms={synonyms}
           antonyms={antonyms}

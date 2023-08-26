@@ -473,6 +473,7 @@
 }
 .coach > p{
   color: rgba(255, 255, 255, 0.8);
+  color: #fff;
   margin-bottom: 20px;
 }
  .svg{

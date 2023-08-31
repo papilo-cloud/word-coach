@@ -20,27 +20,18 @@ const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, se
         svg.style.strokeDashoffset = ans
     }, [])
     
-
-    let board ='';
-    if (point == 0) {
-        board = 'Keep Playing'
+    let boardMsg = {
+        0 : 'Keep Playing',
+        1 : 'Good Effort',
+        2 : 'Great Work',
+        3 : 'Well Done',
+        4 : 'Almost Perfect',
+        5 : 'Perfect'
     }
-    if (point == 1) {
-        board = 'Good Effort'
+ 
+    function boardMessage(key) {
+        return boardMsg[key]
     }
-    if (point == 2) {
-        board = 'Great Work'
-    }
-    if (point == 3) {
-        board = 'Well Done'
-    }
-    if (point == 4) {
-        board = 'Almost Perfect';
-    }
-    if (point == 5) {
-        board = 'Perfect'
-    }
-
     function handleClick(arg) {
         setClick(arg)
     }
@@ -57,7 +48,7 @@ const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, se
             </div>
             <div className="txt">
                 <p>Score <span></span> {score} </p>
-                <p className='bold'>{board}</p>
+                <p className='bold'>{boardMessage(point)}</p>
             </div>
         </div>
         <div className="round">

@@ -69,8 +69,8 @@ const Game = () => {
       // err=> console.log(err.message)
     )
   }
-  // console.log(getSyn)
-  // console.log(getAnt)
+  console.log(getSyn)
+  console.log(getAnt)
   useEffect(() => {
     setSyn()
   }, [index])
@@ -80,7 +80,6 @@ const Game = () => {
     const words = await data.json();
     setWord([...word, words]);
   }
-  // console.log(word)
 
   const handleClickOne = (params) => {
     setCount(count+1);

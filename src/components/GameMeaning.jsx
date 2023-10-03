@@ -11,7 +11,6 @@ const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, se
     useEffect(() => {
         let svg = circle.current;
         let length = svg.getTotalLength();
-        // console.log(length)
         svg.style.strokeDasharray = length;
         svg.style.strokeDashoffset = length
         let ans = 35.12899 * (5-point);

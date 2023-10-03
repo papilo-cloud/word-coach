@@ -32,7 +32,8 @@ const Speaker = ({audio}) => {
         <p className='pp'>Not available</p>
       </div>
         <button onClick={handleClick}>
-          <img src={speaker} alt="speaker" />
+          <img className='src'  src={speaker} alt="speaker" />
+          
         </button>
         <audio ref={myRef}  src={audio}></audio>
     </div>

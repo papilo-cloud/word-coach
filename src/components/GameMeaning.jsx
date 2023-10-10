@@ -6,6 +6,7 @@ import { getAntonyms } from './utility'
 
 const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
+    const [clickBtn, setClickBtn] = useState(false)
 // console.log(util().slice(util().length - 5) )
 
 let index = 0
@@ -43,6 +44,7 @@ let index = 0
     }
     function handleClick(arg) {
         setClick(arg)
+        setClickBtn(!clickBtn)
     }
     function nextTountButn() {
         setRandom(random.slice(random.length-10));
@@ -76,13 +78,13 @@ let index = 0
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>
-            <button className='exp-butn' onClick={() => handleClick(x)}>
+            <button className={click == x?'exp-butn exp-butn1':'exp-butn'} onClick={() => handleClick(x)}>
                <p> {val[x]? <img src={check} alt="check" />: <img src={cross} alt="cross" /> } 
                 Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0]?.word}?</p>
                 <img src={arrow} alt="down-arrow" />
             </button>
             
-            <div className={click == x? "exp-text display": "exp-text"}>
+            <div className={click == x && clickBtn? "exp-text display": "exp-text"}>
                 <div className='word-list'>
                     <p><img src={check} alt="check" /> {getSyn[x]}</p>
                     <p><img src={cross} alt="cross" /> {getAnt[x]}</p>

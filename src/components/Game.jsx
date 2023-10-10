@@ -61,6 +61,7 @@ const Game = () => {
   const [count, setCount] = useState(0)
   const [synWord, setSynWord] = useState([])
   const [antWord, setAntWord] = useState([])
+  const [animate, setAnimate] = useState(false)
 
   // console.log(random)
   // console.log(rand)
@@ -116,6 +117,7 @@ const Game = () => {
 
   const handleClickOne = (params) => {
     setCount(count+1);
+    handleAnimate();
 
     setTimeout(() => {
       if (index > 4) {
@@ -147,6 +149,7 @@ const Game = () => {
   }
   function handleClickTwo(params) {
     setCount(count+1);
+    handleAnimate();
 
     setTimeout(() => {
       if (index > 4) {
@@ -177,6 +180,12 @@ const Game = () => {
     // setIndex(index + 1)
     // console.log(index)
   }
+  function handleAnimate(){
+    setAnimate(true)
+    setTimeout(() => {
+      setAnimate(false)
+    }, 2000);
+}
 
   const guess = ['opposite', 'similar'].sort((a,b) => 0.5 - Math.random())
   const srtBtn = [
@@ -231,7 +240,7 @@ const Game = () => {
             <p>word coach</p>
             {
               click ? <div className="score">
-                <p>score</p><span></span>{score}
+                <p>score</p><span className='span'></span><span className={animate?'count count-animate':'count'}>{score}</span>
               </div>:
               <div className="more">
               <p>Learn new words</p>

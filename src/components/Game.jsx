@@ -37,13 +37,12 @@ return rndm
 // document.addEventListener('load',()=> rndWord())
     
 
-console.log(rndm)
 
 const Game = () => {
   // const [number, setNumber] = useState(0)
   const [random, setRandom] = useState(rndm)
-  const x = random?.length > 5 ? 5 : random?.length
-  let [rand, setRand] = useState(random.slice(0, x))
+  const x = random.length> 5? random.slice(random.length-5): random.slice()
+  let [rand, setRand] = useState(x)
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
@@ -61,6 +60,8 @@ const Game = () => {
   const [point, setPoint] = useState(0)
   const [count, setCount] = useState(0)
 
+  // console.log(random)
+  // console.log(rand)
 
   useEffect(() => {
   }, [])
@@ -184,8 +185,11 @@ const Game = () => {
           setCount={setCount}
           setRandom={setRandom}
           util={rndWord}
+          setRand={setRand}
           getAnt={getAnt}
           getSyn={getSyn}
+          setGetAnt={setGetAnt}
+          setGetSyn={setGetSyn}
           guesses={guesses}
           synonyms={synonyms}
           antonyms={antonyms}
@@ -213,7 +217,7 @@ const Game = () => {
           <div className="words"
           
           >
-              <p>which word is {guess[0].includes('opposite')? `the ${guess[0]} of `: `${guess[0]} to `}  {rand[index]}?</p>
+              <p>which word is <i>{guess[0].includes('opposite')? `the ${guess[0]} of `: `${guess[0]} to ` }  </i>{rand[index]}?</p>
               <div className="box">
                 {srtBtn[0]}
                 <p>or</p>

@@ -3,9 +3,12 @@ import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({setRandom, random, util, guesses, val, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
+const GameMeaning = ({setGetAnt,setGetSyn,setRand, setRandom, random, util, guesses, val, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
-console.log(util().slice(util().length - 10) )
+// console.log(util().slice(util().length - 5) )
+
+console.log(getSyn)
+  console.log(getAnt)
 
   console.log(random)
     const circle = useRef()
@@ -36,6 +39,15 @@ console.log(util().slice(util().length - 10) )
     function handleClick(arg) {
         setClick(arg)
     }
+    function nextTountButn() {
+        setRandom(random.slice(random.length-10));
+                setRand(util().slice(util().length - 5));
+                setPoint(0); setCount(0); setIndex(0); 
+                setWord([]);
+                setGetAnt([]);
+                setGetSyn([])
+
+    }
   return (
     <div className='coach'>
         <p>word coach</p>
@@ -54,7 +66,7 @@ console.log(util().slice(util().length - 10) )
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {setRandom(random.slice(random.length - 10));setPoint(0); setCount(0); setIndex(0); setWord([])}}>Next round</button>
+            <button onClick={nextTountButn}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>
@@ -63,6 +75,10 @@ console.log(util().slice(util().length - 10) )
                 Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0]?.word}?</p>
                 <img src={arrow} alt="down-arrow" />
             </button>
+            <div className='word-list'>
+                <p>{getSyn[x]}</p>
+                <p>{getAnt[x]}</p>
+            </div>
             <div className={click == x? "exp-text display": "exp-text"}>
                 <p className='p'>Learn why</p>
                 <p>What's the definition of {wrd[0]?.word}?</p>

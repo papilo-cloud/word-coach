@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import WordDefinition from './components/WordDefinition';
 import Game from './components/Game';
 import { ModalContext } from './components/ModalContext';
+import axios from 'axios';
 
 // const baseUrl1 = "https://dictionaryapi.com/api/v3/references/collegiate/json/alchemy?key=ddc8b6ea-7ce5-4f2a-9ff5-2426249b5255"
 
@@ -17,6 +18,7 @@ function App() {
   const [isError, setIsError] = useState(false)
   const [isErrors, setIsErrors] = useState(false)
   const [modalClose, setModalClose] = useState(false)
+
 
   const fetchWord = async()=>{
     const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
@@ -91,7 +93,7 @@ function App() {
         </form>
         {game && text.length == 0? <WordDefinition audio={audio} data={words} />:<div className="enter"><p>Enter a word</p></div>}
         </div>
-        {game && <Game data={words} />}
+        {game && <Game text={text} data={words} />}
       </div>}
     </div>
     </ModalContext.Provider>

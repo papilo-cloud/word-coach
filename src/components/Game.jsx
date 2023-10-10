@@ -59,6 +59,8 @@ const Game = () => {
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
   const [count, setCount] = useState(0)
+  const [synWord, setSynWord] = useState([])
+  const [antWord, setAntWord] = useState([])
 
   // console.log(random)
   // console.log(rand)
@@ -93,6 +95,24 @@ const Game = () => {
     const words = await data.json();
     setWord([...word, words]);
   }
+
+  const fetchWordss = async () => {
+      const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getSyn[index]}`);
+      const data1 = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getAnt[index]}`);
+      const words = await data.json();
+      const words1 = await data1.json();
+      setSynWord([...synWord, words]);
+      setAntWord([...antWord, words1])
+    
+  }
+  // useEffect(() => {
+  // }, [getSyn])
+
+  // console.log(synWord)
+  // console.log(antWord)
+  // console.log(getSyn)
+  // console.log(word)
+  
 
   const handleClickOne = (params) => {
     setCount(count+1);
@@ -162,12 +182,12 @@ const Game = () => {
   const srtBtn = [
     <button 
       className={clicked && correct? 'buttons correct': clicked && !correct? 'buttons wrong': 'buttons'} 
-      onClick={() => {handleClickOne('similar'); fetchWords(rand[index])}}>
+      onClick={() => {handleClickOne('similar');fetchWordss(); fetchWords(rand[index])}}>
       {clicked && <img src={correct? check: cross} alt="check/cross" /> }{synonyms[0] || synonyms[1]}
       </button>,
     <button
       className={clicked1 && correct1? 'buttons correct': clicked1 && !correct1? 'buttons wrong': 'buttons'} 
-      onClick={() => {handleClickTwo('opposite'); fetchWords(rand[index])}}>
+      onClick={() => {handleClickTwo('opposite');fetchWordss(); fetchWords(rand[index])}}>
       {clicked1 && <img src={correct1? check: cross} alt="check/cross" /> }{antonyms[0] || antonyms[1]}
       </button>
   ].sort((a,b) =>
@@ -194,13 +214,19 @@ const Game = () => {
           synonyms={synonyms}
           antonyms={antonyms}
           val={val}
+          setVal={setVal}
           random={random}
           setWord={setWord}
           score={score} 
           setIndex={setIndex}
           setPoint={setPoint} 
           point={point} 
-          word={word} />
+          word={word} 
+          synWord={synWord}
+          antWord={antWord}
+          setSynWord={setSynWord}
+          setAntWord={setAntWord}
+          />
       ): (
         <div>
         <div className="top">

@@ -2,15 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
+import { getAntonyms } from './utility'
 
-const GameMeaning = ({setGetAnt,setGetSyn,setRand, setRandom, random, util, guesses, val, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
+const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
 // console.log(util().slice(util().length - 5) )
 
-console.log(getSyn)
-  console.log(getAnt)
+    console.log(synWord[0][0].meanings[0].definitions[0].definition)
+    // console.log(synWord[0][0].meanings[0].definitions[1].definition)
+    // console.log(synWord[0][0].meanings[1].definitions[0].definition)
+    // console.log(synWord[0][0].meanings[1].definitions[1].definition)
+    console.log(synWord[0][0])
 
-  console.log(random)
     const circle = useRef()
 
     useEffect(() => {
@@ -45,7 +48,8 @@ console.log(getSyn)
                 setPoint(0); setCount(0); setIndex(0); 
                 setWord([]);
                 setGetAnt([]);
-                setGetSyn([])
+                setGetSyn([]);
+                setVal([])
 
     }
   return (
@@ -75,15 +79,35 @@ console.log(getSyn)
                 Word {guesses[x] == 'similar'? 'similar to': 'opposite of'} {wrd[0]?.word}?</p>
                 <img src={arrow} alt="down-arrow" />
             </button>
-            <div className='word-list'>
-                <p>{getSyn[x]}</p>
-                <p>{getAnt[x]}</p>
-            </div>
+            
             <div className={click == x? "exp-text display": "exp-text"}>
-                <p className='p'>Learn why</p>
-                <p>What's the definition of {wrd[0]?.word}?</p>
-                <p> {wrd[0]?.meanings[0]?.definitions[0]?.definition} </p>
-                <p> {wrd[1]?.meanings[0]?.definitions[0]?.definition} </p>
+                <div className='word-list'>
+                    <p><img src={check} alt="check" /> {getSyn[x]}</p>
+                    <p><img src={cross} alt="cross" /> {getAnt[x]}</p>
+                </div>
+                <div className="word-definition">
+                    <p className='p'>Learn why</p>
+                    <p>What's the definition of {wrd[0]?.word}?</p>
+                    <p> {wrd[0]?.meanings[0]?.definitions[0]?.definition} </p>
+                    <p> {wrd[0]?.meanings[1]?.definitions[0]?.definition} </p>
+                    <p> {wrd[0]?.meanings[0]?.definitions[1]?.definition} </p>
+                    <p> {wrd[0]?.meanings[1]?.definitions[1]?.definition} </p>
+                </div>
+                <div className="word-similar">
+                    <p className='word-p'>{guesses[x] == 'similar'? `How is ${getSyn[x]} similar`: `How is ${getSyn[x]} different`}</p>
+                    {/* <p>{synWord[x][0]?.meanings[1]?.definitions[0]?.definition}</p>
+                    <p>{synWord[x][0]?.meanings[0]?.definitions[0]?.definition}</p>
+                    <p>{synWord[x][0]?.meanings[0]?.definitions[1]?.definition}</p>
+                    <p>{synWord[x][0]?.meanings[1]?.definitions[1]?.definition}</p> */}
+                    {getAntonyms(x)}
+                </div>
+                <div className="word-didsimilar">
+                    <p className='word-p'>{guesses[x] == 'similar'? `How is ${getAnt[x]} different`: `What is the definition of ${getAnt[x]} `}</p>
+                    <p>{antWord[x][0]?.meanings[1]?.definitions[0]?.definition}</p>
+                    <p>{antWord[x][0]?.meanings[0]?.definitions[0]?.definition}</p>
+                    <p>{antWord[x][0]?.meanings[0]?.definitions[1]?.definition}</p>
+                    <p>{antWord[x][0]?.meanings[1]?.definitions[1]?.definition}</p>
+                </div>
             </div>
             </div>)}
         </div>

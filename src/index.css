@@ -605,7 +605,7 @@
   line-height: 22px;
 }
 .explanation .exp-text .word-definition p:nth-child(2){
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.4);
   /* margin-bottom: 8px; */
 }
 .explanation .word-list {
@@ -634,5 +634,9 @@
   color: #f81f02;
 }
 .explanation .word-similar{
-  
+  position: relative;
+  margin-bottom: 17px;
+}
+.explanation .word-dissimilar p:nth-child(1), .explanation .word-similar p:nth-child(1){
+  color: rgba(255, 255, 255, 0.4);
 }

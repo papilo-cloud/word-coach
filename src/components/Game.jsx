@@ -194,10 +194,8 @@ const Game = () => {
     0.5 - Math.random())
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: index == count ? 1: 0 }}
-      transition={{duration: .5,  delay: 0.5 }}
+    <div
+      
       className='main'>
       {index > 4? (
         
@@ -240,9 +238,11 @@ const Game = () => {
             </div>
             }
         </div>
-          <div className="words"
-          
-          >
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: index == count ? 1: 0 }}
+        transition={{duration: .5,  delay: 0.5 }}>
+          <div className="words">
               <p>which word is <i>{guess[0].includes('opposite')? `the ${guess[0]} of `: `${guess[0]} to ` }  </i>{rand[index]}?</p>
               <div className="box">
                 {srtBtn[0]}
@@ -250,6 +250,7 @@ const Game = () => {
                 {srtBtn[1]}
               </div>
           </div>
+        </motion.div>
           <div className="level">
             <div><img src={image} alt="i" /></div>
             <div className="span">
@@ -261,7 +262,7 @@ const Game = () => {
         </div>
       )}
         
-    </motion.div>
+    </div>
   )
 }
 

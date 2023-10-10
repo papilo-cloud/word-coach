@@ -77,7 +77,6 @@ const Similar = ({antonyms, synonyms}) => {
         }, 2000);
       } else{
         setShowModal(true)
-
       }
     }
 

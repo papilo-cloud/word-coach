@@ -6,33 +6,44 @@ import check from '../assets/checkmark.svg'
 import axios from 'axios'
 import GameMeaning from './GameMeaning'
 import { motion } from "framer-motion";
+import { util } from './util'
 
-let rndm = [];
-    for (let i = 0; i < 80; i++) {
-        const url = 'https://api.api-ninjas.com/v1/randomword'
-        const config = {
-          headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
-        };
-        axios.get(url, config)
-        .then(res=> {
-          const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res?.data?.word}`
-          const config1 = {
-            headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
-          };
-          axios.get(url1, config1)
-          .then(res=> {if (res?.data?.synonyms?.length >1 && res?.data?.antonyms?.length >1) {
-            return rndm.push(res?.data?.word)
-          }})
-        } )
-        // .catch(err=> console.log(err.message))
-        
-    }
 
-// console.log(rndm)
+var rndm = []
+rndWord()
+
+function rndWord() {
+  // let rndm = []
+  for (let i = 0; i < 80; i++) {
+    const url = 'https://api.api-ninjas.com/v1/randomword'
+    const config = {
+      headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+    };
+    axios.get(url, config)
+    .then(res=> {
+      const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res?.data?.word}`
+      const config1 = {
+        headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+      };
+      axios.get(url1, config1)
+      .then(res=> {if (res?.data?.synonyms?.length >1 && res?.data?.antonyms?.length >1) {
+         rndm.push(res?.data?.word)
+      }})
+    } )
+    // .catch(err=> console.log(err.message))
+}
+return rndm
+}
+// document.addEventListener('load',()=> rndWord())
+    
+
+console.log(rndm)
 
 const Game = () => {
   // const [number, setNumber] = useState(0)
-  const [rand, setRand] = useState(rndm.slice(0, 5))
+  const [random, setRandom] = useState(rndm)
+  const x = random?.length > 5 ? 5 : random?.length
+  let [rand, setRand] = useState(random.slice(0, x))
   const [index, setIndex] = useState(0)
   const [antonyms, setAntonyms] = useState([])
   const [synonyms, setSynonyms] = useState([])
@@ -40,8 +51,8 @@ const Game = () => {
   const [getAnt, setGetAnt] = useState([])
   const [val, setVal] = useState([])
   const [guesses, setGuesses] = useState([])
-    const [word, setWord] = useState([])
-    const [correct, setCorrect] = useState(false);
+  const [word, setWord] = useState([])
+  const [correct, setCorrect] = useState(false);
   const [correct1, setCorrect1] = useState(false);
   const [clicked, setClicked] = useState(false)
   const [clicked1, setClicked1] = useState(false)
@@ -49,6 +60,7 @@ const Game = () => {
   const [score, setScore] = useState(0)
   const [point, setPoint] = useState(0)
   const [count, setCount] = useState(0)
+
 
   useEffect(() => {
   }, [])
@@ -69,8 +81,8 @@ const Game = () => {
       // err=> console.log(err.message)
     )
   }
-  console.log(getSyn)
-  console.log(getAnt)
+  // console.log(getSyn)
+  // console.log(getAnt)
   useEffect(() => {
     setSyn()
   }, [index])
@@ -170,12 +182,15 @@ const Game = () => {
         
         <GameMeaning
           setCount={setCount}
+          setRandom={setRandom}
+          util={rndWord}
           getAnt={getAnt}
           getSyn={getSyn}
           guesses={guesses}
           synonyms={synonyms}
           antonyms={antonyms}
           val={val}
+          random={random}
           setWord={setWord}
           score={score} 
           setIndex={setIndex}

@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-// import Apps from './Apps.jsx'
+// import './App.css'
+// import {Apps} from './Apps.jsx'
 // import cors from "cors";
 // const corsOrigin ={
 //     origin:'http://localhost:5173', //or whatever port your frontend is using

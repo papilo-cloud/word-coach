@@ -3,9 +3,11 @@ import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
+const GameMeaning = ({setRandom, random, util, guesses, val, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
+console.log(util().slice(util().length - 10) )
 
+  console.log(random)
     const circle = useRef()
 
     useEffect(() => {
@@ -37,7 +39,7 @@ const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, se
   return (
     <div className='coach'>
         <p>word coach</p>
-        <div className="svg">
+        <div className="svg"> 
             <div className='svgs'>
                 <svg>
                     <circle cx={32} cy={32} r={28} fill='none' />
@@ -52,7 +54,7 @@ const GameMeaning = ({guesses, val, setCount, getAnt, getSyn, setWord, score, se
         </div>
         <div className="round">
             <p>Explanations</p>
-            <button onClick={() => {alert('Under Development');setPoint(0); setCount(0); setIndex(0); setWord([])}}>Next round</button>
+            <button onClick={() => {setRandom(random.slice(random.length - 10));setPoint(0); setCount(0); setIndex(0); setWord([])}}>Next round</button>
         </div>
         <div className="explanation">
            {word?.map((wrd, x) => <div className="text" key={x}>

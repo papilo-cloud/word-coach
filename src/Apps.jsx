@@ -1,56 +1,43 @@
+import {Card} from './Card'
+import { getUserImage } from './getUserImage';
+// const user = {
+//   name: 'Hady Lamar',
+//   imgUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+//   imgSize: 200
+// }
+const products = [
+  { title: 'Cabbage', id: 1 },
+  { title: 'Garlic', id: 2 },
+  { title: 'Apple', id: 3 },
+];
 
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { forwardRef } from 'react'
-import { motion } from "framer-motion";
-
-function itemize(text) {
-    const letters = text.split('')
-        .filter(l => l !== ' ')
-        .reduce((collection, item) => {
-            const letter = item.toLowerCase();
-            return {
-                ...collection,
-                [letter]: (collection[letter] || 0) + 1
-            }
-        }, {})
-    return Object.entries(letters)
-            .sort((a, b) => b[1] - a[1]);
-
+export function Apps() {
+  const pdc = products.map(x => <li style={{
+    color: x.id == 1? 'red': 'blue'
+  }}>{x.title}</li>)
+  return (
+    <Card>
+      <h1>My Profile</h1>
+      <Profile person={
+        { name: 'Lin Lanying', imageId: '1bX5QH6', size:'m' }
+      } />
+      {pdc}
+    </Card>
+  )
 }
 
-function CharacterMap({ text }) {
-
-    
-    return(
-     <div>
-     Character Map:
-     {itemize(text).map(txt => <div key={txt[0]}>
-        {txt[0]}:{txt[1]}
-     </div> )}
-     </div>
-     )
-    }
-    
-    const variants = {
-        open: { opacity: 1, x: 0 },
-      }
-
-function Apps() {
-    const [mon, setMon] = useState(false)
-
-  return (
-    <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{  delay: .3 }}
-    >
-        <h1>hello</h1>
-        <div>
-            <button onClick={() => setMon(!mon)}>click me</button>
-        </div>
-    </motion.div>
+function Profile({person}) {
+  return(
+      <div className="app">
+        <h2>{person.name}</h2>
+        <img
+        src={getUserImage(person)}
+        />
+      </div>
   )
 }
 
 
-export default Apps;
+
+
+// export default Apps;

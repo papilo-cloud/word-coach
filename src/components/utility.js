@@ -1,5 +1,5 @@
 
 
 export function  getAntonyms(id) {
-    console.log(id)
+    console.log( id+1)
 }

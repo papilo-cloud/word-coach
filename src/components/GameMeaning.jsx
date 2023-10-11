@@ -8,7 +8,9 @@ const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, 
     const [click, setClick] = useState(7)
 // console.log(util().slice(util().length - 5) )
 
-    console.log(synWord[0][0].meanings[0].definitions[0].definition)
+let index = 0
+
+    // console.log(synWord[y][0].meanings[0].definitions[0].definition)
     // console.log(synWord[0][0].meanings[0].definitions[1].definition)
     // console.log(synWord[0][0].meanings[1].definitions[0].definition)
     // console.log(synWord[0][0].meanings[1].definitions[1].definition)
@@ -95,13 +97,12 @@ const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, 
                 </div>
                 <div className="word-similar">
                     <p className='word-p'>{guesses[x] == 'similar'? `How is ${getSyn[x]} similar`: `How is ${getSyn[x]} different`}</p>
-                    {/* <p>{synWord[x][0]?.meanings[1]?.definitions[0]?.definition}</p>
+                    <p>{synWord[x][0]?.meanings[1]?.definitions[0]?.definition}</p>
                     <p>{synWord[x][0]?.meanings[0]?.definitions[0]?.definition}</p>
                     <p>{synWord[x][0]?.meanings[0]?.definitions[1]?.definition}</p>
-                    <p>{synWord[x][0]?.meanings[1]?.definitions[1]?.definition}</p> */}
-                    {getAntonyms(x)}
+                    <p>{synWord[x][0]?.meanings[1]?.definitions[1]?.definition}</p>
                 </div>
-                <div className="word-didsimilar">
+                <div className="word-dissimilar">
                     <p className='word-p'>{guesses[x] == 'similar'? `How is ${getAnt[x]} different`: `What is the definition of ${getAnt[x]} `}</p>
                     <p>{antWord[x][0]?.meanings[1]?.definitions[0]?.definition}</p>
                     <p>{antWord[x][0]?.meanings[0]?.definitions[0]?.definition}</p>

@@ -14,16 +14,16 @@ rndWord()
 
 function rndWord() {
   // let rndm = []
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 20; i++) {
     const url = 'https://api.api-ninjas.com/v1/randomword'
     const config = {
-      headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+      headers: { 'X-Api-Key': '8lN0nO6eNz+Wh0JaXLYQsQ==2vljliUGMVUrqPEQ'} 
     };
     axios.get(url, config)
     .then(res=> {
       const url1 = `https://api.api-ninjas.com/v1/thesaurus?word=${res?.data?.word}`
       const config1 = {
-        headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+        headers: { 'X-Api-Key': '8lN0nO6eNz+Wh0JaXLYQsQ==2vljliUGMVUrqPEQ'} 
       };
       axios.get(url1, config1)
       .then(res=> {if (res?.data?.synonyms?.length >1 && res?.data?.antonyms?.length >1) {
@@ -68,12 +68,12 @@ const Game = () => {
 
   useEffect(() => {
   }, [])
-  
- 
+  //2 8lN0nO6eNz+Wh0JaXLYQsQ==2vljliUGMVUrqPEQ
+  //1 d9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP
   const setSyn = async() => {
     const url = `https://api.api-ninjas.com/v1/thesaurus?word=${rand[index]}`
     const config = {
-      headers: { 'X-Api-Key': 'd9rMZOyeZqmyL1k/mb1ooA==hWCnGvBuR0DK59QP'} 
+      headers: { 'X-Api-Key': '8lN0nO6eNz+Wh0JaXLYQsQ==2vljliUGMVUrqPEQ'} 
     };
     axios.get(url, config)
     .then(res=> {setAntonyms(res?.data?.antonyms );
@@ -205,7 +205,7 @@ const Game = () => {
   return (
     <div
       
-      className='main'>
+      className='main'> 
       {index > 4? (
         
         <GameMeaning

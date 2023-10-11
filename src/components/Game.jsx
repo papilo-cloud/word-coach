@@ -218,6 +218,7 @@ const Game = () => {
           setGetAnt={setGetAnt}
           setGetSyn={setGetSyn}
           guesses={guesses}
+          setGuesses={setGuesses}
           synonyms={synonyms}
           antonyms={antonyms}
           val={val}

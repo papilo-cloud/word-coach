@@ -3,19 +3,11 @@ import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
 
-const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
+const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util,setGuesses, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
-    const [clickBtn, setClickBtn] = useState(false)
-// console.log(util().slice(util().length - 5) )
+    // const [clickBtn, setClickBtn] = useState(false)
+    // console.log(util().slice(util().length - 5) )
 
-let index = 0
-
-    // console.log(synWord[y][0].meanings[0].definitions[0].definition)
-    // console.log(synWord[0][0].meanings[0].definitions[1].definition)
-    // console.log(synWord[0][0].meanings[1].definitions[0].definition)
-    // console.log(synWord[0][0].meanings[1].definitions[1].definition)
-    // console.log(synWord[0][0])
-    // console.log(antWord[0][0])
 
     const circle = useRef()
 
@@ -44,17 +36,19 @@ let index = 0
     }
     function handleClick(arg) {
         setClick(arg)
-        setClickBtn(!clickBtn)
+        // setClickBt)
     }
     function nextTountButn() {
         setRandom(random.slice(random.length-10));
-                setRand(util().slice(util().length - 5));
-                setPoint(0); setCount(0); setIndex(0); 
-                setWord([]);
-                setGetAnt([]);
-                setGetSyn([]);
-                setVal([])
-
+        setRand(util().slice(util().length - 5));
+        setPoint(0); setCount(0); setIndex(0); 
+        setWord([]);
+        setGetAnt([]);
+        setGetSyn([]);
+        setVal([]);
+        setSynWord([]);
+        setAntWord([]);
+        setGuesses([])
     }
   return (
     <div className='coach'>
@@ -84,7 +78,7 @@ let index = 0
                 <img src={arrow} alt="down-arrow" />
             </button>
             
-            <div className={click == x && clickBtn? "exp-text display": "exp-text"}>
+            <div className={click == x ? "exp-text display": "exp-text"}>
                 <div className='word-list'>
                     <p><img src={check} alt="check" /> {getSyn[x]}</p>
                     <p><img src={cross} alt="cross" /> {getAnt[x]}</p>

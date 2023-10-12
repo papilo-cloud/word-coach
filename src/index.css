@@ -466,8 +466,8 @@
   border-radius: 50%;
 }
 .level .span .next{
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   background-color: #fff;
 }
 .level .span .correct{
@@ -532,7 +532,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 500; 
 }
 .svg .txt p{
   color: rgb(103, 250, 103);

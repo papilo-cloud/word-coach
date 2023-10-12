@@ -109,8 +109,8 @@ const Game = () => {
   // useEffect(() => {
   // }, [getSyn])
 
-  // console.log(synWord)
-  // console.log(antWord)
+  console.log(val)
+  console.log(synWord)
   // console.log(getSyn)
   // console.log(word)
   
@@ -265,7 +265,10 @@ const Game = () => {
             <div><img src={image} alt="i" /></div>
             <div className="span">
               {rand.map((spn, i) => <span key={i}
-              className={index == i? 'spans next':'spans'} ></span> )}
+              className={(index == i)?'spans next':'spans'}
+              style={{
+                backgroundColor: val[i] ? '#0d0':val[i] == false ? '#f81f02':'#ccc' 
+              }} ></span> )}
             </div>
             <button onClick={onSkip}>skip</button>
         </div>

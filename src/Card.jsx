@@ -1,9 +1,8 @@
 
-export const Card = ({children}) => {
+export const Card = ({children, message}) => {
   return (
-    <div className="card">
-        <h1>hello</h1>
-        <div>{children}</div>
-    </div>
+    <button onClick={() => alert(message)}>
+      {children}
+    </button>
   )
 }

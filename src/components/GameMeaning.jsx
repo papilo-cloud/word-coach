@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
 import check from '../assets/checkmarkn.svg'
-import { getAntonyms } from './utility'
 
 const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
@@ -15,7 +14,8 @@ let index = 0
     // console.log(synWord[0][0].meanings[0].definitions[1].definition)
     // console.log(synWord[0][0].meanings[1].definitions[0].definition)
     // console.log(synWord[0][0].meanings[1].definitions[1].definition)
-    console.log(synWord[0][0])
+    // console.log(synWord[0][0])
+    // console.log(antWord[0][0])
 
     const circle = useRef()
 

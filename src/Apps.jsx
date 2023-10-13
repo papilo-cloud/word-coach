@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import {Card} from './Card'
-import { getUserImage } from './getUserImage';
+// import { getUserImage } from './getUserImage';
 
 function Button({children, onlcick}) {
   return(
@@ -30,10 +31,19 @@ function UploadButton() {
 
 export function Apps() {
   
+  const [index, setIndex] = useState(0)
+  const [cart, setCart] = useState([])
+
+  function updateIndex() {
+    setCart(c => c.push('hello'))
+  }
+  {console.log(typeof cart)}
+  
   return (
     <div>
-      <Playbtton message='hello world!' />
-      <UploadButton />
+      <p>{cart}</p>
+      <button onClick={updateIndex}>update</button>
+      {index}
     </div>
   )
 }

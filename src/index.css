@@ -460,14 +460,14 @@
 }
 .level .span .spans{
   display: inline-block;
-  width: 5px;
-  height: 5px;
-  background-color: #ccc;
+  width: 7px;
+  height: 7px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
 }
 .level .span .next{
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   background-color: #fff;
 }
 .level .span .correct{

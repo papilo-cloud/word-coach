@@ -1,65 +1,60 @@
-import { useState } from 'react';
-import {Card} from './Card'
-// import { getUserImage } from './getUserImage';
 
-function Button({children, onlcick}) {
-  return(
-    <button onClick={onlcick}>
-      {children}
-    </button>
-  )
-}
+ const Form = ({status= 'error'}) => {
 
-function Playbtton({message}) {
-  function handleClick() {
-    alert(`Playing ${message}`)
+  const [answer, setAnswer] = useState('');
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState('typing');
+
+  if (status == 'success') {
+    return <h1>That's right!</h1>
   }
-  return(
-    <Button onlcick={handleClick}>
-      Play "{message}"
-    </Button>
-  )
-}
-function UploadButton() {
-  return(
-    <Button onlcick={()=> alert('uploading')}>
-      upload image
-    </Button>
-  )
-}
-
-
-export function Apps() {
-  
-  const [index, setIndex] = useState(0)
-  const [cart, setCart] = useState([])
-
-  function updateIndex() {
-    setCart(c => c.push('hello'))
-  }
-  {console.log(typeof cart)}
-  
   return (
     <div>
-      <p>{cart}</p>
-      <button onClick={updateIndex}>update</button>
-      {index}
+      <h1>city qiuz</h1>
+      <p>In which city is there a billboard that turns air into drinkable</p>
+      <form >
+        <textarea disabled={
+          status == 'submitting'
+        } />
+        <br />
+        <button disabled={
+          status == 'empty' ||
+          status == 'submitting'
+        }>
+          Submit
+        </button>
+        {
+          status == 'error' && 
+          <p className="error">
+            Good guess but a wrong answer. Try again!
+          </p>
+        }
+      </form>
     </div>
   )
 }
 
-function Profile({person}) {
-  return(
-      <div className="app">
-        <h2>{person.name}</h2>
-        <img
-        src={getUserImage(person)}
-        />
-      </div>
+let statuses = [
+  'empty'
+  ,
+  'typing'
+  ,
+  'submitting'
+  ,
+  'success'
+  ,
+  'error'
+  ,
+  ];
+  
+
+export const Apps = () => {
+  return (
+    <div>
+      {statuses.map(status => <section>
+        <h4>Form ({status}):</h4>
+        <Form status={status} />
+      </section> )}
+    </div>
   )
 }
-
-
-
-
-// export default Apps;

@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useRef, useState } from 'react'
 import arrow from '../assets/down-arrow.svg'
 import cross from '../assets/crossn.svg'
@@ -6,12 +8,6 @@ import { boardMessage } from '../utilities/boardMessage'
 
 const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, setAntWord, setRandom, random, util,setGuesses, guesses, val,setVal, setCount, getAnt, getSyn, setWord, score, setIndex, setPoint, point, word, synonyms, antonyms}) => {
     const [click, setClick] = useState(7)
-    // const [clickBtn, setClickBtn] = useState(false)
-    // console.log(util().slice(util().length - 5) )
-    console.log(synWord[0][0])
-    console.log(synWord[0])
-    console.log(synWord.length)
-    // console.log(word[0][0].)
 
     const circle = useRef()
 
@@ -86,17 +82,17 @@ const GameMeaning = ({setGetAnt,setGetSyn,setRand,synWord, antWord, setSynWord, 
                 </div>
                 <div className="word-similar">
                     <p className='word-p'>{guesses[x] == 'similar'? `How is ${getSyn[x]} similar`: `How is ${getSyn[x]} different`}</p>
-                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord[x][0]?.meanings[1]?.definitions[0]?.definition : ''}</p>
-                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x][0]?.meanings[0]?.definitions[0]?.definition : ''}</p>
-                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x][0]?.meanings[0]?.definitions[1]?.definition : ''}</p>
-                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x][0]?.meanings[1]?.definitions[1]?.definition : ''}</p>
+                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x]?.[0]?.meanings[1]?.definitions[0]?.definition : ''}</p>
+                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x]?.[0]?.meanings[0]?.definitions[0]?.definition : ''}</p>
+                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x]?.[0]?.meanings[0]?.definitions[1]?.definition : ''}</p>
+                    <p>{Array.isArray(synWord) && synWord.length > 0 ? synWord?.[x]?.[0]?.meanings[1]?.definitions[1]?.definition : ''}</p>
                 </div>
                 <div className="word-dissimilar">
                     <p className='word-p'>{guesses[x] == 'similar'? `How is ${getAnt[x]} different`: `What is the definition of ${getAnt[x]} `}</p>
-                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x][0]?.meanings[1]?.definitions[0]?.definition : ''}</p>
-                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x][0]?.meanings[0]?.definitions[0]?.definition : ''}</p>
-                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x][0]?.meanings[0]?.definitions[1]?.definition : ''}</p>
-                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x][0]?.meanings[1]?.definitions[1]?.definition : ''}</p>
+                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x]?.[0]?.meanings[1]?.definitions[0]?.definition : ''}</p>
+                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x]?.[0]?.meanings[0]?.definitions[0]?.definition : ''}</p>
+                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x]?.[0]?.meanings[0]?.definitions[1]?.definition : ''}</p>
+                    <p>{Array.isArray(antWord) && antWord.length > 0 ? antWord?.[x]?.[0]?.meanings[1]?.definitions[1]?.definition : ''}</p>
                 </div>
             </div>
             </div>)}

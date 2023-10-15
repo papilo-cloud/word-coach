@@ -78,15 +78,14 @@ const Game = () => {
     axios.get(url, config)
     .then(res=> {setAntonyms(res?.data?.antonyms );
                   setSynonyms(res?.data?.synonyms);
-                  setGetSyn([...getSyn, res?.data?.synonyms[0]]);
-                  setGetAnt([...getAnt, res?.data?.antonyms[0]])
+                  setGetSyn([...getSyn, res?.data?.synonyms?.[0]]);
+                  setGetAnt([...getAnt, res?.data?.antonyms?.[0]])
                 })
     .catch(
-      // err=> console.log(err.message)
+      err=> console.error(err.message)
     )
   }
-  // console.log(getSyn)
-  // console.log(getAnt)
+
   useEffect(() => {
     setSyn()
   }, [index])
@@ -98,22 +97,14 @@ const Game = () => {
   }
 
   const fetchWordss = async () => {
-      const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getSyn[index]}`);
-      const data1 = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getAnt[index]}`);
+      const data = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getSyn?.[index]}`);
+      const data1 = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${getAnt?.[index]}`);
       const words = await data.json();
       const words1 = await data1.json();
       setSynWord([...synWord, words]);
       setAntWord([...antWord, words1])
     
   }
-  // useEffect(() => {
-  // }, [getSyn])
-
-  console.log(val)
-  console.log(synWord)
-  // console.log(getSyn)
-  // console.log(word)
-  
 
   const handleClickOne = (params) => {
     setCount(count+1);
@@ -137,13 +128,11 @@ const Game = () => {
       setVal([...val,true])
       setScore(score + 200)
         setPoint(point + 1)
-        // alert('correct')
     }
     else{
       setGuesses([...guesses, params])
       setCorrect(false)
       setVal([...val,false])
-      // alert('false')
     }
 
   }
@@ -177,8 +166,9 @@ const Game = () => {
     }
   }
   function onSkip() {
-    // setIndex(index + 1)
-    // console.log(index)
+    handleClickOne();
+    fetchWordss(); 
+    fetchWords(rand[index])
   }
   function handleAnimate(){
     setAnimate(true)
@@ -267,7 +257,7 @@ const Game = () => {
               {rand.map((spn, i) => <span key={i}
               className={(index == i)?'spans next':'spans'}
               style={{
-                backgroundColor: val[i] ? '#0d0':val[i] == false ? '#f81f02':'#ccc' 
+                backgroundColor: val[i] ? '#0d0':val[i] == false ? '#f81f02':'' 
               }} ></span> )}
             </div>
             <button onClick={onSkip}>skip</button>

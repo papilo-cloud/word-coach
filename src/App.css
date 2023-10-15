@@ -1,6 +1,7 @@
 .app{
     color: #3c96e0c5;
     font-family: sans-serif;
+    position: relative;
 }
 
 .card{

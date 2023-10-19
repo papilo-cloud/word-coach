@@ -19,6 +19,15 @@
   padding: 40px 0;
 }
 
+.app .error-msg{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+}
 
 .class{
   position: relative;

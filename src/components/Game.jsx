@@ -10,6 +10,7 @@ import { util } from './util'
 
 
 var rndm = []
+if (typeof window !== 'undefined') {
 rndWord()
 
 function rndWord() {
@@ -34,12 +35,13 @@ function rndWord() {
 }
 return rndm
 }
-// document.addEventListener('load',()=> rndWord())
+}
+
     
 
 
 const Game = () => {
-  // const [number, setNumber] = useState(0)
+
   const [random, setRandom] = useState(rndm)
   const x = random.length> 5? random.slice(random.length-5): random.slice()
   let [rand, setRand] = useState(x)
@@ -171,7 +173,7 @@ const Game = () => {
     fetchWords(rand[index])
   }
   function handleAnimate(){
-    setAnimate(true)
+    setAnimate(true) 
     setTimeout(() => {
       setAnimate(false)
     }, 2000);

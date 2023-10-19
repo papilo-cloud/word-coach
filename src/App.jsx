@@ -15,7 +15,6 @@ function App() {
   const [words, setWords] = useState([])
   const [game, setGame] = useState(false)
   const [isOpac, setIsOpac] = useState(false)
-  const [isError, setIsError] = useState(false)
   const [isErrors, setIsErrors] = useState(false)
   const [modalClose, setModalClose] = useState(false)
 
@@ -29,21 +28,16 @@ function App() {
     )
     .then(datas => {setWords(datas);
       setAudio(datas[0]?.phonetics[0]?.audio)
+      setIsErrors(false)
+      console.log( )
     })
     .catch(err => {
-      // console.log(err)
+      console.log(err)
+      setIsErrors(true)
     })
-  }
-
-  useEffect(() => {
-    let mounted = false;
-    if (!mounted) {
-      fetchWord();
-    }
-    return () => mounted = true;
-
-    }, [text]);
-
+}
+  
+ 
   function handleChange(e) {
       setText(e.target.value)
   }
@@ -52,15 +46,11 @@ function App() {
       e.preventDefault();
       if (text.trim().length == 0) {
           alert('Enter a word')
-      }if (isErrors) {
-        // setIsError(true)
-      } else {
-        // setIsError(false)
+      }
         setText('');
           fetchWord()
           setGame(true)
     }
-  }
 
 
   return (
@@ -78,7 +68,22 @@ function App() {
       }
     }>
       <div className={isOpac ? 'app opac':'app'} >
-      {isError? <p>Error:</p>:
+      {isErrors?
+        <div className="class" id={modalClose? 'one':''} >
+        <div className={isOpac ? 'search opac':'search'}>
+          <h1>Dictionary</h1>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <input
+               type="text" 
+               value={text}
+               onChange={handleChange}
+               placeholder='Search for word' />
+            </label>
+        </form>
+        </div>
+        <p className='error-msg' >Error: Something went wrong <br />Try again. </p>
+      </div>:
       <div className="class" id={modalClose? 'one':''} >
         <div className={isOpac ? 'search opac':'search'}>
           <h1>Dictionary</h1>

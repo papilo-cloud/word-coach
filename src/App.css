@@ -2,6 +2,11 @@
     color: #3c96e0c5;
     font-family: sans-serif;
     position: relative;
+    margin: 0 auto;
+    width: 500px;
+}
+.app ul{
+    margin-bottom: 20px;
 }
 
 .card{

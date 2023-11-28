@@ -10,7 +10,6 @@ import { util } from './util'
 
 
 var rndm = []
-if (typeof window !== 'undefined') {
 rndWord()
 
 function rndWord() {
@@ -34,7 +33,6 @@ function rndWord() {
     // .catch(err=> console.log(err.message))
 }
 return rndm
-}
 }
 
     
@@ -203,7 +201,7 @@ const Game = () => {
         <GameMeaning
           setCount={setCount}
           setRandom={setRandom}
-          util={rndWord}
+          util={rndWord} 
           setRand={setRand}
           getAnt={getAnt}
           getSyn={getSyn}

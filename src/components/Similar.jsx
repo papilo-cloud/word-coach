@@ -12,18 +12,19 @@ const Similar = ({antonyms, synonyms}) => {
     const [dissimilar, setDissimilar] = useState(false)
     const [addMore, setAddMore] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [truth, setTruth] = useState(false)
     const [words, setWords] = useState([])
     const [audios, setAudios] = useState([])
     const [tooltip, setTooltip] = useState(true)
-
     let [more, setMore] = useState(10)
+
     var myRef = useRef(0)
     var modalRef = useRef()
     let {isOpac, setIsOpac} = useContext(ModalContext)
   
     useEffect(() => {
       let getHeight = myRef.current.clientHeight ;
-      
+      // console.log(getHeight)
       if (getHeight > 64 && isMore) {
         setAddMore(true);
         setMore(more - 1);
@@ -53,13 +54,17 @@ const Similar = ({antonyms, synonyms}) => {
     
 
     function handleChange() {
-      if (isMore) {
+      setTruth(!truth)
+      if (truth) {
         setMore(antonyms.length+synonyms.length)
         setIsMore(false)
         setBr(true)
         setDissimilar(true)
       } else{
         setIsMore(true)
+        setMore(10)
+        setBr(false)
+        setDissimilar(false)
       }
     }
     

@@ -12,4 +12,4 @@ export function tasksReducer(tasks, action) {
       default:
         throw new Error('Unknown action: '+ action.type) ;
     }
-  }
+  } 

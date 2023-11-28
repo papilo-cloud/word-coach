@@ -4,6 +4,9 @@
   margin: 0;
   padding: 0;
 }
+button{
+  cursor: pointer;
+}
 .app{
   position: relative;
   width: 100%;
@@ -462,10 +465,11 @@
   padding:0px  20px 10px;
 }
 .level .span{
-  width: 50px;
+  width: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* gap: 10px; */
 }
 .level .span .spans{
   display: inline-block;
@@ -487,9 +491,13 @@
 }
 .level button{
   background-color: inherit;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: inherit;
+  outline: none;
+  padding: 4px 8px;
+  border-radius: 14px;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.8em;
+  font-size: 0.9em;
   letter-spacing: 0.8px;
 }
 .main input{

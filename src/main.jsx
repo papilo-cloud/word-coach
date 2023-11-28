@@ -15,8 +15,8 @@ const corsOrigin ={
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <Appss /> */}
     <App />
     {/* <Apps /> */}
   </React.StrictMode>,
 )
+ 

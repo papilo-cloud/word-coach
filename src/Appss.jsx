@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import List from './List';
+import Search from './Search';
 
 const lists = [
     {
@@ -39,6 +41,8 @@ export default class Appss extends Component {
          searhTerm: ''
       }
       this.onSearch = this.onSearch.bind(this);
+      this.onDismiss = this.onDismiss.bind(this)
+      this.isSearched = this.isSearched.bind(this)
       
     }
      keys = ['title', 'author']
@@ -56,27 +60,21 @@ export default class Appss extends Component {
     }
  
   render() {
+    // console.log(this.isSearched())
     const {searhTerm, lists} = this.state
     // const {isSearched, onDismiss, onSearch} = this
     return (
       <ul className='app'>
-        <form action="">
-          <input type="text" value={searhTerm} onChange={this.onSearch} />
-        </form>
-        {
-            this.isSearched().map(list => <li key={list.objectID} >
-                <a href={list.url}>{list.title}</a>
-                <ul>
-                    <li>Author: {list.author}</li>
-                    <li>Comments: {list.num_comments}</li>
-                    <li>Points: {list.points}</li>
-                    <button onClick={() =>this.onDismiss(list.objectID)} >
-                        Dismiss
-                    </button>
-                </ul>
-                
-            </li> )
-        }
+        <Search 
+        searhTerm={searhTerm}
+        onSearch={this.onSearch} >
+          Search
+        </Search>
+        
+        <List 
+        isSearched={this.isSearched}
+        onDismiss ={this.onDismiss}
+         />
       </ul>
     )
   }

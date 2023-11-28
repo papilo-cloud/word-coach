@@ -1,5 +1,8 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { MyContext, useLevelContext } from "../myContext";
+import { getOnlineStatus } from "./getOnlineStatus.js";
+import { useFormInput } from "./useFormInput";
+import { useCounter } from "./useCounter";
 
 function AddTask() {
 
@@ -44,16 +47,12 @@ function Tasklist() {
   
 
 export const Apps = () => {
-  const [count, setCount] = useState(0)
-  
  
-
-
+  const counter =  useCounter();
   return (
-    <MyContext>
-      <AddTask />
-      <Tasklist />
-    </MyContext>
-  )
+    <>
+      <h1>Seconds passed: {counter}</h1>
+    </>
+  );
 }
 

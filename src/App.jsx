@@ -91,7 +91,7 @@ function App() {
             <label>
               <input
                type="text" 
-               value={text}
+               value={text} 
                onChange={handleChange}
                placeholder='Search for word' />
             </label>

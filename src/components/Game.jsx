@@ -193,9 +193,7 @@ const Game = () => {
     0.5 - Math.random())
 
   return (
-    <div
-      
-      className='main'> 
+    <div className='main'> 
       {index > 4? (
         
         <GameMeaning

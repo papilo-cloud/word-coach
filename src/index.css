@@ -22,6 +22,7 @@ button{
   padding: 40px 0;
 }
 
+
 .app .error-msg{
   position: relative;
   display: flex;
@@ -34,7 +35,7 @@ button{
 
 .class{
   position: relative;
-  max-width: 500px;
+  max-width: 700px;
   color: rgba(255, 255, 255, 0.8);
   margin: 0 auto;
 }
@@ -219,7 +220,7 @@ button{
 @media screen and (min-width: 520px) {
   .similar .modal{
     width: 420px;
-  }
+  }  
 }
 .modal .inner{
   position: relative;
@@ -695,4 +696,66 @@ button{
 }
 .explanation .word-dissimilar p:nth-child(1), .explanation .word-similar p:nth-child(1){
   color: rgba(255, 255, 255, 0.4);
+}
+@media screen and (min-width: 768px) {
+  .app{
+    font-size: 1em;
+  }
+  .main .top{
+    padding-top: 20px;
+  }
+  .main .top p{
+    padding-left: 40px;
+    font-size: 1em;
+  }
+  .main .top .score{
+    padding-right: 40px;
+  }
+  .main .top .more{
+    padding: 10px 8px 10px 40px;
+  }
+  .main .top .more p{
+    font-size: 0.9rem;
+  }
+  .main .coach{
+    padding: 40px;
+  }
+  .main .words{
+    text-align: center;
+    padding: 20px;
+  }
+  .main .words p{
+    margin-bottom: 20px;
+    font-size: 1em;
+  }
+  .words .box{
+    padding: 0 20px;
+  }
+  .words .box .buttons{
+    height: 50px;
+    font-size: 1em;
+  }
+
+  .main .level{
+    padding:0px  40px 20px;
+  }
+  .level .span{
+    width: 62px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 10px; */
+  }
+  .level .span .spans{
+    width: 9px;
+    height: 9px;
+  }
+  .level .span .next{
+    width: 12px;
+    height: 12px;
+  }
+  .level button{
+    padding: 7px 18px;
+    font-size: 1em;
+  }
 }

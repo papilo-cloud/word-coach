@@ -8,14 +8,14 @@ const WordDefinition = ({data, audio}) => {
     return (
       <>
         {data.title?(
-          <div className="nothing">
+          <div className="nothing"> 
             <h2>{data.title}</h2>
             <p>{data.message}</p>
             <p>{data.resolution}</p>
           </div>
         ):(
           <div className="def">
-            <div className="meaning">
+            <div className="meaning"> 
               <Speaker audio={audio} />
               <p>{data[0]?.word}
               <br /><span>{data[0]?.phonetics.length == 0? data[0]?.phonetic: data[0]?.phonetics[0].text}</span>

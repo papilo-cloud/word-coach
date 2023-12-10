@@ -103,7 +103,6 @@ const Game = () => {
       const words1 = await data1.json();
       setSynWord([...synWord, words]);
       setAntWord([...antWord, words1])
-    
   }
 
   const handleClickOne = (params) => {
